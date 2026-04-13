@@ -1,0 +1,26 @@
+[
+  {
+    "title": "I built one AI model. Then I split it into three. Here's what changed.",
+    "slug": "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "zayvora",
+      "AI"
+    ],
+    "description": "Most people think bigger AI models are always better. They aren’t. Here is what happened when I stopped treating every problem the same way.",
+    "path": "/zayvora-split/index.html"
+  },
+  {
+    "title": "I Built My Own AI Brain",
+    "slug": "i-built-my-own-ai-brain",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "AI",
+      "Research"
+    ],
+    "description": "",
+    "path": "/my-own-ai-brain/index.html"
+  }
+]
