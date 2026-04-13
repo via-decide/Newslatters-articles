@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zayvora Research Newsletter</title>
+  <style>
+    body{margin:0;background:#07090b;color:#d1d5db;font-family:Inter,system-ui,sans-serif}
+    .wrap{max-width:900px;margin:0 auto;padding:32px 16px 60px}
+    .card{display:block;background:#111827;border:1px solid #1f2937;border-radius:10px;padding:14px;margin-bottom:10px;color:#d1d5db;text-decoration:none}
+    .subscribe-btn{display:inline-block;background:#0a66c2;color:#fff;text-decoration:none;font-weight:600;padding:10px 16px;border-radius:999px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Zayvora Research</h1>
+    <p>Research newsletter covering local AI models, operational modes, and architecture decisions from the Zayvora system.</p>
+    <a class="subscribe-btn" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7447309290073165824" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn</a>
+    <h3 style="margin-top:26px;">Related Articles</h3>
+    <div id="related"></div>
+  </div>
+<script>
+(async function () {
+  const res = await fetch('../../data/articles.json', { cache: 'no-store' });
+  const rows = await res.json();
+  const related = rows.filter((article) => String(article.newsletter || '').toLowerCase() === 'zayvora-research');
+  document.getElementById('related').innerHTML = related.map((article) => `
+    <a class="card" href="../../${article.path.replace(/^\//, '')}">
+      <small>${article.date || ''}</small>
+      <h4>${article.title}</h4>
+      <p>${article.summary || article.description || ''}</p>
+    </a>
+  `).join('') || '<p>No related articles yet.</p>';
+})();
+</script>
+</body>
+</html>

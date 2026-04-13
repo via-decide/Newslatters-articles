@@ -34,7 +34,7 @@
   </div>
 <script>
 (async function () {
-  const clusters = ['All', 'AI', 'zayvora', 'ViaDecide', 'Commerce', 'Knowledge systems'];
+  const clusters = ['All', 'AI', 'zayvora', 'ViaDecide', 'Commerce', 'Knowledge systems', 'zayvora-research', 'daxini-stack'];
   const clusterEl = document.getElementById('clusters');
   const cardsEl = document.getElementById('cards');
   const searchEl = document.getElementById('search');
@@ -55,6 +55,7 @@
     if ((article.tags || []).join(' ').toLowerCase().includes(q)) score += 4;
     if ((article.concepts || []).join(' ').toLowerCase().includes(q)) score += 4;
     if ((article.content || '').toLowerCase().includes(q)) score += 2;
+    if (String(article.newsletter || '').toLowerCase().includes(q)) score += 4;
     return score;
   }
 
@@ -71,6 +72,7 @@
         <small>${article.date || ''}</small>
         <h4>${article.title}</h4>
         <p>${article.summary || article.description || ''}</p>
+        ${article.newsletter ? `<small style="color:#93c5fd;">Newsletter: ${article.newsletter}</small>` : ""}
       </a>
     `).join('') || '<p>No matching articles found.</p>';
   }
