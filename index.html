@@ -316,6 +316,10 @@
             const score = !query ? 1 : (haystack.includes(query) ? ((article.title || '').toLowerCase().includes(query) ? 5 : 2) : 0);
             return { article, score, matchesFilter };
         }).filter((x) => x.matchesFilter && x.score > 0).sort((a, b) => b.score - a.score).map((x) => x.article);
+            const haystack = [article.title, article.description, tags.join(' ')].join(' ').toLowerCase();
+            const matchesQuery = !query || haystack.includes(query);
+            return matchesFilter && matchesQuery;
+        });
 
         articlesGrid.innerHTML = list.map((article) => `
             <a href="${toHref(article.path)}" class="article-card">
