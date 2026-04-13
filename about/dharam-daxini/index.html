@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dharam Daxini Articles</title>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; background:#08090a; color:#d1d5db; margin:0; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 48px 20px; }
+    .card { display:block; border:1px solid #1f2937; background:#111827; border-radius:12px; padding:20px; margin-bottom:16px; color:#d1d5db; text-decoration:none; }
+    .tags { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
+    .pill { border:1px solid #1f2937; border-radius:999px; padding:2px 8px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>About Dharam Daxini</h1>
+    <p>Articles connected to ViaDecide, The Daxini Stack, and AI systems.</p>
+    <div id="list"></div>
+  </div>
+  <script>
+    (async function () {
+      const focusTags = ['viadecide', 'the daxini stack', 'ai'];
+      const list = document.getElementById('list');
+      const res = await fetch('../../data/articles.json', { cache: 'no-store' });
+      const rows = await res.json();
+      const matches = rows.filter((article) => (article.tags || []).some((tag) => focusTags.includes(String(tag).toLowerCase())));
+      list.innerHTML = matches.map((article) => `
+        <a class="card" href="../../${article.path.replace(/^\//, '')}">
+          <small>${article.date || ''}</small>
+          <h2>${article.title}</h2>
+          <p>${article.description || ''}</p>
+          <div class="tags">${(article.tags || []).map((tag) => `<span class="pill">${tag}</span>`).join('')}</div>
+        </a>
+      `).join('') || '<p>No profile-linked articles yet.</p>';
+    })();
+  </script>
+</body>
+</html>

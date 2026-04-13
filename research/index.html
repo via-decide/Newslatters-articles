@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Engine</title>
+  <style>
+    body{margin:0;background:#07090b;color:#d1d5db;font-family:Inter,system-ui,sans-serif}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 16px 60px}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    .panel{background:#101827;border:1px solid #1f2937;border-radius:12px;padding:14px}
+    .card{display:block;color:#d1d5db;text-decoration:none;border:1px solid #1f2937;border-radius:10px;padding:12px;margin-bottom:10px}
+    .cluster{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{border:1px solid #1f2937;border-radius:999px;padding:4px 10px;cursor:pointer}
+    .chip.active{border-color:#14b8a6;color:#14b8a6}
+    svg{width:100%;height:320px;background:#0b1220;border-radius:10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Research</h1>
+    <div class="cluster" id="clusters"></div>
+    <div class="grid" style="margin-top:14px;">
+      <div class="panel">
+        <h3>Scrollable article cards</h3>
+        <input id="search" placeholder="Search title, tags, content, concepts" style="width:100%;padding:10px;border-radius:8px;border:1px solid #1f2937;background:#0b1220;color:#d1d5db;">
+        <div id="cards" style="max-height:520px;overflow:auto;margin-top:12px;"></div>
+      </div>
+      <div class="panel">
+        <h3>Concept graph</h3>
+        <svg id="graph"></svg>
+      </div>
+    </div>
+  </div>
+<script>
+(async function () {
+  const clusters = ['All', 'AI', 'zayvora', 'ViaDecide', 'Commerce', 'Knowledge systems'];
+  const clusterEl = document.getElementById('clusters');
+  const cardsEl = document.getElementById('cards');
+  const searchEl = document.getElementById('search');
+  const graphEl = document.getElementById('graph');
+  let selected = 'All';
+  let articles = [];
+  let graph = [];
+
+  clusterEl.innerHTML = clusters.map((c) => `<button class="chip" data-tag="${c}">${c}</button>`).join('');
+  const chips = Array.from(document.querySelectorAll('.chip'));
+
+  function rank(article, query){
+    if (!query) return 1;
+    const q = query.toLowerCase();
+    let score = 0;
+    if ((article.title || '').toLowerCase().includes(q)) score += 5;
+    if ((article.description || '').toLowerCase().includes(q)) score += 3;
+    if ((article.tags || []).join(' ').toLowerCase().includes(q)) score += 4;
+    if ((article.concepts || []).join(' ').toLowerCase().includes(q)) score += 4;
+    if ((article.content || '').toLowerCase().includes(q)) score += 2;
+    return score;
+  }
+
+  function renderCards() {
+    const q = searchEl.value.trim();
+    const filtered = articles
+      .filter((a) => selected === 'All' || (a.tags || []).some((t) => String(t).toLowerCase() === selected.toLowerCase()))
+      .map((a) => ({ article: a, score: rank(a, q) }))
+      .filter((x) => !q || x.score > 0)
+      .sort((a, b) => b.score - a.score || (a.article.date < b.article.date ? 1 : -1));
+
+    cardsEl.innerHTML = filtered.map(({ article }) => `
+      <a class="card" href="../${article.path.replace(/^\//, '')}">
+        <small>${article.date || ''}</small>
+        <h4>${article.title}</h4>
+        <p>${article.summary || article.description || ''}</p>
+      </a>
+    `).join('') || '<p>No matching articles found.</p>';
+  }
+
+  function renderGraph() {
+    const width = graphEl.clientWidth || 400;
+    const height = 320;
+    const nodes = graph.slice(0, 12);
+    const radius = 120;
+    const centerX = width / 2;
+    const centerY = height / 2;
+    const points = nodes.map((n, i) => ({
+      slug: n.node,
+      x: centerX + Math.cos((Math.PI * 2 * i) / Math.max(nodes.length, 1)) * radius,
+      y: centerY + Math.sin((Math.PI * 2 * i) / Math.max(nodes.length, 1)) * radius
+    }));
+
+    const getPoint = (slug) => points.find((p) => p.slug === slug);
+    const lines = [];
+    for (const n of nodes) {
+      const from = getPoint(n.node);
+      for (const rel of (n.related || []).slice(0, 2)) {
+        const to = getPoint(rel);
+        if (from && to) lines.push(`<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" stroke="#334155" />`);
+      }
+    }
+
+    const circles = points.map((p) => `<g><circle cx="${p.x}" cy="${p.y}" r="8" fill="#14b8a6" /><text x="${p.x + 10}" y="${p.y + 4}" fill="#cbd5e1" font-size="10">${p.slug.slice(0, 18)}</text></g>`);
+    graphEl.innerHTML = [...lines, ...circles].join('');
+  }
+
+  chips.forEach((chip, i) => {
+    if (i === 0) chip.classList.add('active');
+    chip.addEventListener('click', () => {
+      selected = chip.dataset.tag;
+      chips.forEach((c) => c.classList.toggle('active', c === chip));
+      renderCards();
+    });
+  });
+  searchEl.addEventListener('input', renderCards);
+
+  const [articlesRes, graphRes] = await Promise.all([
+    fetch('../data/articles.json', { cache: 'no-store' }),
+    fetch('../data/knowledge_graph.json', { cache: 'no-store' })
+  ]);
+  articles = await articlesRes.json();
+  graph = await graphRes.json();
+  renderCards();
+  renderGraph();
+})();
+</script>
+</body>
+</html>

@@ -211,6 +211,27 @@
             color: var(--text-heading);
         }
 
+        .filter-btn {
+            background: #111827;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 999px;
+            padding: 10px 14px;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .tag-pill {
+            font-size: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            padding: 2px 8px;
+        }
+
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
             .article-card { padding: 24px; }
@@ -235,31 +256,25 @@
         </a>
     </div>
 
-    <h3 class="section-title">Latest Articles</h3>
-    
-    <div class="articles-grid">
-        
-        <!-- Article 1: Zayvora Split -->
-        <a href="./zayvora-split/index.html" class="article-card">
-            <div class="article-meta">
-                <span class="article-badge">Interactive Report</span>
-                <span>AI Architecture</span>
-            </div>
-            <h2>I built one AI model. Then I split it into three. Here's what changed.</h2>
-            <p>An interactive deep dive on why parameter counts matter less than tightly constrained system prompting. Explore the live Axiom, Praxis, and Nexar output toggle.</p>
-        </a>
-
-        <!-- Article 2: My Own AI Brain -->
-        <a href="./my-own-ai-brain/index.html" class="article-card">
-            <div class="article-meta">
-                <span class="article-badge">Manifesto</span>
-                <span>Infrastructure</span>
-            </div>
-            <h2>I Got Tired of Forgetting Everything I Read. So I Built My Own AI Brain.</h2>
-            <p>The origin story of the Daxini Stack. How I ingested 12,000+ books into a Chroma vector store and built a fully local Research Engine.</p>
-        </a>
-
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+        <a href="./research/" class="filter-btn" style="text-decoration:none;">Research View</a>
+        <a href="./profile/dharam-daxini/" class="filter-btn" style="text-decoration:none;">Dharam Profile</a>
+        <a href="./zayvora/" class="filter-btn" style="text-decoration:none;">Zayvora Section</a>
     </div>
+
+    <h3 class="section-title">Latest Articles</h3>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
+        <input id="article-search" type="search" placeholder="Search title, tags, description" style="flex:1;min-width:220px;background:#0f172a;border:1px solid var(--border-color);color:var(--text-primary);padding:12px 14px;border-radius:10px;">
+        <button class="filter-btn" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Zayvora">Zayvora</button>
+        <button class="filter-btn" data-filter="ViaDecide">ViaDecide</button>
+        <button class="filter-btn" data-filter="AI">AI</button>
+        <button class="filter-btn" data-filter="Research">Research</button>
+    </div>
+
+    <div id="articles-grid" class="articles-grid"></div>
+    <p id="empty-state" style="display:none;color:var(--text-muted);">No articles match your filters yet.</p>
 
     <footer class="footer">
         <div>Zayvora Engine · Daxini Stack v0.9.1</div>
@@ -269,6 +284,75 @@
         </div>
     </footer>
 </div>
+
+
+<script>
+(async function () {
+    const articlesGrid = document.getElementById('articles-grid');
+    const searchInput = document.getElementById('article-search');
+    const emptyState = document.getElementById('empty-state');
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+
+    let selectedFilter = 'all';
+    let articles = [];
+
+    function formatDate(value) {
+        if (!value) return '';
+        const date = new Date(value + 'T00:00:00');
+        return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function toHref(articlePath) {
+        const trimmed = articlePath.replace(/^\//, '');
+        return './' + trimmed;
+    }
+
+    function render() {
+        const query = searchInput.value.trim().toLowerCase();
+        const list = articles.filter((article) => {
+            const tags = (article.tags || []).map((tag) => String(tag));
+            const matchesFilter = selectedFilter === 'all' || tags.some((tag) => tag.toLowerCase() === selectedFilter.toLowerCase());
+            const haystack = [article.title, article.description, article.summary, article.content, (article.concepts || []).join(' '), tags.join(' ')].join(' ').toLowerCase();
+            const score = !query ? 1 : (haystack.includes(query) ? ((article.title || '').toLowerCase().includes(query) ? 5 : 2) : 0);
+            return { article, score, matchesFilter };
+        }).filter((x) => x.matchesFilter && x.score > 0).sort((a, b) => b.score - a.score).map((x) => x.article);
+
+        articlesGrid.innerHTML = list.map((article) => `
+            <a href="${toHref(article.path)}" class="article-card">
+                <div class="article-meta">
+                    <span class="article-badge">${article.author || 'Dharam Daxini'}</span>
+                    <span>${formatDate(article.date)}</span>
+                </div>
+                <h2>${article.title}</h2>
+                <p>${article.description || 'No description provided yet.'}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;">${(article.tags || []).map((tag) => `<span class="tag-pill">${tag}</span>`).join('')}</div>
+            </a>
+        `).join('');
+
+        emptyState.style.display = list.length ? 'none' : 'block';
+    }
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            selectedFilter = button.dataset.filter;
+            filterButtons.forEach((item) => item.classList.toggle('active', item === button));
+            render();
+        });
+    });
+
+    searchInput.addEventListener('input', render);
+
+    try {
+        const response = await fetch('./data/articles.json', { cache: 'no-store' });
+        articles = await response.json();
+    } catch (error) {
+        console.error('Failed to load article index', error);
+    }
+
+    filterButtons[0].classList.add('active');
+    render();
+})();
+</script>
 
 </body>
 </html>
