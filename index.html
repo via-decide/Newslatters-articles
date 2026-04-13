@@ -232,6 +232,17 @@
             padding: 2px 8px;
         }
 
+
+        .newsletters-section { margin-bottom: 56px; }
+        .newsletter-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .newsletter-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; }
+        .newsletter-card h4 { margin: 0 0 8px; color: var(--text-heading); font-size: 1.2rem; }
+        .newsletter-card p { margin: 0 0 14px; color: var(--text-muted); }
+        .subscribe-btn { display:inline-block; background: var(--linkedin-blue); color:#fff; text-decoration:none; font-weight:600; padding:10px 16px; border-radius:999px; box-shadow:0 4px 14px rgba(10,102,194,0.35); }
+        .subscribe-btn:hover { background:#0b76e0; }
+        .newsletter-label { border:1px solid rgba(10,102,194,0.5); color:#93c5fd; border-radius:999px; padding:3px 8px; font-size:0.75rem; }
+        .footer-newsletter { margin: 20px auto 0; max-width: 520px; background: rgba(10,102,194,0.08); border:1px solid rgba(10,102,194,0.35); border-radius:12px; padding:18px; }
+
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
             .article-card { padding: 24px; }
@@ -262,6 +273,12 @@
         <a href="./zayvora/" class="filter-btn" style="text-decoration:none;">Zayvora Section</a>
     </div>
 
+
+    <section class="newsletters-section">
+        <h3 class="section-title">Research Newsletters</h3>
+        <div id="newsletter-grid" class="newsletter-grid"></div>
+    </section>
+
     <h3 class="section-title">Latest Articles</h3>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
@@ -282,6 +299,11 @@
             <a href="https://daxini.xyz" target="_blank">daxini.xyz</a> ·
             <a href="https://x.com/daxini2404" target="_blank">@daxini2404</a>
         </div>
+        <div class="footer-newsletter">
+            <h4 style="margin:0 0 6px;color:#e2e8f0;">Stay Updated</h4>
+            <p style="margin:0 0 12px;">Follow both research newsletters by Dharam Daxini and subscribe on LinkedIn.</p>
+            <a class="subscribe-btn" href="./newsletter/zayvora/">Explore Newsletters</a>
+        </div>
     </footer>
 </div>
 
@@ -291,7 +313,25 @@
     const articlesGrid = document.getElementById('articles-grid');
     const searchInput = document.getElementById('article-search');
     const emptyState = document.getElementById('empty-state');
-    const filterButtons = Array.from(document.querySelectorAll('.filter-btn'));
+    const filterButtons = Array.from(document.querySelectorAll('.filter-btn[data-filter]'));
+    const newsletterGrid = document.getElementById('newsletter-grid');
+
+    const newsletters = [
+        {
+            key: 'zayvora-research',
+            title: 'Zayvora Research',
+            description: 'Systems, local-first AI architecture, and practical research breakdowns from the Zayvora engine.',
+            subscribeUrl: 'https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7447309290073165824',
+            pageUrl: './newsletter/zayvora/'
+        },
+        {
+            key: 'daxini-stack',
+            title: 'Daxini Stack Dispatches',
+            description: 'Founder notes on AI infrastructure, knowledge systems, and applied engineering experiments.',
+            subscribeUrl: 'https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7436013913500110850',
+            pageUrl: './newsletter/daxini/'
+        }
+    ];
 
     let selectedFilter = 'all';
     let articles = [];
@@ -303,29 +343,46 @@
     }
 
     function toHref(articlePath) {
-        const trimmed = articlePath.replace(/^\//, '');
+        const trimmed = String(articlePath || '').replace(/^\//, '');
         return './' + trimmed;
+    }
+
+    function renderNewsletterCards() {
+        newsletterGrid.innerHTML = newsletters.map((newsletter) => `
+            <article class="newsletter-card">
+                <h4>${newsletter.title}</h4>
+                <p>${newsletter.description}</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <a class="subscribe-btn" href="${newsletter.subscribeUrl}" target="_blank" rel="noopener noreferrer">Subscribe on LinkedIn</a>
+                    <a class="filter-btn" href="${newsletter.pageUrl}" style="text-decoration:none;">View Newsletter Page</a>
+                </div>
+            </article>
+        `).join('');
     }
 
     function render() {
         const query = searchInput.value.trim().toLowerCase();
-        const list = articles.filter((article) => {
-            const tags = (article.tags || []).map((tag) => String(tag));
-            const matchesFilter = selectedFilter === 'all' || tags.some((tag) => tag.toLowerCase() === selectedFilter.toLowerCase());
-            const haystack = [article.title, article.description, article.summary, article.content, (article.concepts || []).join(' '), tags.join(' ')].join(' ').toLowerCase();
-            const score = !query ? 1 : (haystack.includes(query) ? ((article.title || '').toLowerCase().includes(query) ? 5 : 2) : 0);
-            return { article, score, matchesFilter };
-        }).filter((x) => x.matchesFilter && x.score > 0).sort((a, b) => b.score - a.score).map((x) => x.article);
-            const haystack = [article.title, article.description, tags.join(' ')].join(' ').toLowerCase();
-            const matchesQuery = !query || haystack.includes(query);
-            return matchesFilter && matchesQuery;
-        });
+        const list = articles
+            .filter((article) => {
+                const tags = (article.tags || []).map((tag) => String(tag));
+                return selectedFilter === 'all' || tags.some((tag) => tag.toLowerCase() === selectedFilter.toLowerCase());
+            })
+            .map((article) => {
+                const tags = (article.tags || []).map((tag) => String(tag));
+                const haystack = [article.title, article.description, article.summary, article.content, (article.concepts || []).join(' '), tags.join(' '), article.newsletter].join(' ').toLowerCase();
+                const score = !query ? 1 : (haystack.includes(query) ? ((article.title || '').toLowerCase().includes(query) ? 5 : 2) : 0);
+                return { article, score };
+            })
+            .filter((x) => x.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .map((x) => x.article);
 
         articlesGrid.innerHTML = list.map((article) => `
             <a href="${toHref(article.path)}" class="article-card">
                 <div class="article-meta">
                     <span class="article-badge">${article.author || 'Dharam Daxini'}</span>
                     <span>${formatDate(article.date)}</span>
+                    ${article.newsletter ? `<span class="newsletter-label">${article.newsletter}</span>` : ''}
                 </div>
                 <h2>${article.title}</h2>
                 <p>${article.description || 'No description provided yet.'}</p>
@@ -353,6 +410,7 @@
         console.error('Failed to load article index', error);
     }
 
+    renderNewsletterCards();
     filterButtons[0].classList.add('active');
     render();
 })();

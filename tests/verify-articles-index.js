@@ -6,11 +6,14 @@ const repoRoot = path.resolve(__dirname, '..');
 const indexPath = path.join(repoRoot, 'data', 'articles.json');
 const allowedExt = new Set(['.md', '.mdx', '.html']);
 const roots = ['articles', 'newsletters', 'zayvora', 'blog'];
-const ignored = new Set(['research/index.html', 'profile/dharam-daxini/index.html', 'about/dharam-daxini/index.html', 'zayvora/index.html', 'index.html']);
 const ignored = new Set([
   'index.html',
+  'research/index.html',
+  'profile/dharam-daxini/index.html',
+  'about/dharam-daxini/index.html',
   'zayvora/index.html',
-  'about/dharam-daxini/index.html'
+  'newsletter/zayvora/index.html',
+  'newsletter/daxini/index.html'
 ]);
 
 function walk(dir, files) {

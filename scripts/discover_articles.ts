@@ -13,7 +13,9 @@ const ignoredPaths = new Set([
   'research/index.html',
   'profile/dharam-daxini/index.html',
   'about/dharam-daxini/index.html',
-  'zayvora/index.html'
+  'zayvora/index.html',
+  'newsletter/zayvora/index.html',
+  'newsletter/daxini/index.html'
 ]);
 const stopwords = new Set(['the','and','for','that','with','this','from','into','your','you','are','was','were','been','have','has','had','about','then','than','they','their','but','not','all','any','can','our','out','how']);
 
@@ -118,6 +120,17 @@ function keywordConcepts(text) {
     .map(([w]) => w);
 }
 
+
+function inferNewsletter(tags, title, rel, content) {
+  const explicit = (Array.isArray(tags) ? tags : []).map((x) => String(x).toLowerCase());
+  if (explicit.includes('zayvora-research')) return 'zayvora-research';
+  if (explicit.includes('daxini-stack')) return 'daxini-stack';
+  const relPath = rel.toLowerCase();
+  const titleValue = String(title || '').toLowerCase();
+  if (relPath.includes('zayvora') || titleValue.includes('zayvora')) return 'zayvora-research';
+  return 'daxini-stack';
+}
+
 function normalizeTags(tagsValue, title, rel, content) {
   const raw = Array.isArray(tagsValue) ? tagsValue : typeof tagsValue === 'string' ? tagsValue.split(',') : [];
   const tags = new Set(raw.map((t) => String(t).trim()).filter(Boolean));
@@ -150,6 +163,7 @@ function discover() {
 
     const title = frontmatter.title || htmlMeta.title || inferTitle(rel);
     const tags = normalizeTags(frontmatter.tags, title, rel, content);
+    const newsletter = String(frontmatter.newsletter || inferNewsletter(tags, title, rel, content)).toLowerCase();
 
     rows.push({
       title,
@@ -161,6 +175,7 @@ function discover() {
       summary: firstParagraph.slice(0, 320),
       concepts: keywordConcepts(`${title} ${content}`),
       content,
+      newsletter,
       path: `/${rel}`
     });
   }
