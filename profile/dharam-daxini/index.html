@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dharam Daxini Profile</title>
+  <style>
+    body{margin:0;background:#07090b;color:#d1d5db;font-family:Inter,system-ui,sans-serif}
+    .wrap{max-width:900px;margin:0 auto;padding:28px 16px 60px}
+    .card{display:block;background:#111827;border:1px solid #1f2937;border-radius:10px;padding:14px;margin-bottom:10px;color:#d1d5db;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Dharam Daxini</h1>
+    <p>Founder of ViaDecide and architect of The Daxini Stack. Focused on local-first AI systems and autonomous knowledge engines.</p>
+    <h3>Founder projects</h3>
+    <ul>
+      <li>ViaDecide</li>
+      <li>Zayvora</li>
+      <li>The Daxini Stack</li>
+    </ul>
+    <h3>Featured Articles</h3>
+    <div id="featured"></div>
+  </div>
+<script>
+(async function () {
+  const res = await fetch('../../data/articles.json', { cache: 'no-store' });
+  const rows = await res.json();
+  const featured = rows.filter((article) => (article.tags || []).some((tag) => ['viadecide', 'the daxini stack', 'ai'].includes(String(tag).toLowerCase())));
+  document.getElementById('featured').innerHTML = featured.map((article) => `
+    <a class="card" href="../../${article.path.replace(/^\//, '')}">
+      <small>${article.date || ''}</small>
+      <h4>${article.title}</h4>
+      <p>${article.summary || article.description || ''}</p>
+    </a>
+  `).join('') || '<p>No featured articles yet.</p>';
+})();
+</script>
+</body>
+</html>

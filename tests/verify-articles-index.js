@@ -5,6 +5,8 @@ const path = require('path');
 const repoRoot = path.resolve(__dirname, '..');
 const indexPath = path.join(repoRoot, 'data', 'articles.json');
 const allowedExt = new Set(['.md', '.mdx', '.html']);
+const roots = ['articles', 'newsletters', 'zayvora', 'blog'];
+const ignored = new Set(['research/index.html', 'profile/dharam-daxini/index.html', 'about/dharam-daxini/index.html', 'zayvora/index.html', 'index.html']);
 const ignored = new Set([
   'index.html',
   'zayvora/index.html',
@@ -34,6 +36,10 @@ if (!fs.existsSync(indexPath)) {
 
 const indexed = new Set(JSON.parse(fs.readFileSync(indexPath, 'utf8')).map((x) => x.path));
 const discovered = new Set();
+for (const root of roots) {
+  walk(path.join(repoRoot, root), discovered);
+}
+if (!discovered.size) walk(repoRoot, discovered);
 walk(repoRoot, discovered);
 
 const missing = [...discovered].filter((item) => !indexed.has(item));

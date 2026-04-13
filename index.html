@@ -256,6 +256,12 @@
         </a>
     </div>
 
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+        <a href="./research/" class="filter-btn" style="text-decoration:none;">Research View</a>
+        <a href="./profile/dharam-daxini/" class="filter-btn" style="text-decoration:none;">Dharam Profile</a>
+        <a href="./zayvora/" class="filter-btn" style="text-decoration:none;">Zayvora Section</a>
+    </div>
+
     <h3 class="section-title">Latest Articles</h3>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
@@ -306,6 +312,10 @@
         const list = articles.filter((article) => {
             const tags = (article.tags || []).map((tag) => String(tag));
             const matchesFilter = selectedFilter === 'all' || tags.some((tag) => tag.toLowerCase() === selectedFilter.toLowerCase());
+            const haystack = [article.title, article.description, article.summary, article.content, (article.concepts || []).join(' '), tags.join(' ')].join(' ').toLowerCase();
+            const score = !query ? 1 : (haystack.includes(query) ? ((article.title || '').toLowerCase().includes(query) ? 5 : 2) : 0);
+            return { article, score, matchesFilter };
+        }).filter((x) => x.matchesFilter && x.score > 0).sort((a, b) => b.score - a.score).map((x) => x.article);
             const haystack = [article.title, article.description, tags.join(' ')].join(' ').toLowerCase();
             const matchesQuery = !query || haystack.includes(query);
             return matchesFilter && matchesQuery;

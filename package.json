@@ -1,0 +1,11 @@
+{
+  "name": "newslatters-articles",
+  "private": true,
+  "scripts": {
+    "discover": "node --experimental-strip-types scripts/discover_articles.ts",
+    "graph": "node --experimental-strip-types scripts/build_graph.ts",
+    "build-index": "node --experimental-strip-types scripts/build_index.ts",
+    "test": "node tests/verify-articles-index.js && node tests/verify-knowledge-graph.js && node tests/verify-ui-routes.js",
+    "build": "npm run build-index"
+  }
+}

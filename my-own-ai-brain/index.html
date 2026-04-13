@@ -1200,5 +1200,51 @@
     btn.textContent = btn.textContent + ' ✓';
   }
 </script>
+
+<script>
+(async function knowledgeEnhancer() {
+  const currentPath = '/' + window.location.pathname.split('/').slice(-2).join('/');
+  const [articlesRes, graphRes] = await Promise.all([
+    fetch('../data/articles.json', { cache: 'no-store' }),
+    fetch('../data/knowledge_graph.json', { cache: 'no-store' })
+  ]);
+  const articles = await articlesRes.json();
+  const graph = await graphRes.json();
+  const current = articles.find((a) => a.path.endsWith(currentPath));
+  if (!current) return;
+
+  const node = graph.find((g) => g.node === current.slug) || { related: [] };
+  const related = node.related.map((slug) => articles.find((a) => a.slug === slug)).filter(Boolean).slice(0, 5);
+
+  const section = document.createElement('section');
+  section.style.marginTop = '48px';
+  section.innerHTML = '<h2>Related Articles</h2>';
+  for (const article of related) {
+    const a = document.createElement('a');
+    a.href = '../' + article.path.replace(/^\//, '');
+    a.style.display = 'block';
+    a.style.margin = '10px 0';
+    a.textContent = article.title;
+    section.appendChild(a);
+  }
+  document.querySelector('.container, .article, body').appendChild(section);
+
+  const conceptTargets = {
+    'local-first ai': '/articles/local-first-ai',
+    'knowledge graph': '/articles/knowledge-graph',
+    'zayvora': '/zayvora/'
+  };
+  const blockSelector = 'p, li';
+  document.querySelectorAll(blockSelector).forEach((el) => {
+    let html = el.innerHTML;
+    for (const phrase in conceptTargets) {
+      const re = new RegExp('\\b' + phrase.replace(/[-/\^$*+?.()|[\]{}]/g, '\\$&') + '\b', 'ig');
+      html = html.replace(re, (m) => `<a href="..${conceptTargets[phrase]}">${m}</a>`);
+    }
+    el.innerHTML = html;
+  });
+})();
+</script>
+
 </body>
 </html>
