@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I built one AI model. Then I split it into three. Here's what changed.</title>
+    <!-- Social Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@daxini2404">
+    <meta property="og:title" content="I built one AI model. Then I split it into 3.">
+    <meta property="og:description" content="Most people think bigger AI models are always better. They aren’t. Here is what happened when I stopped treating every problem the same way.">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --text-primary: #c5c6c7;
+            --text-heading: #ffffff;
+            --accent-cyan: #45a29e;
+            --accent-glow: rgba(69, 162, 158, 0.4);
+            --card-bg: #111216;
+            --border-color: #1f2833;
+            --code-bg: #1f2026;
+            
+            --brand-axiom: #f0c330;
+            --brand-praxis: #e04a3f;
+            --brand-nexar: #4d90fe;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 720px;
+            padding: 60px 24px;
+            width: 100%;
+        }
+
+        h1, h2, h3 {
+            color: var(--text-heading);
+            margin-top: 2.5em;
+            margin-bottom: 0.8em;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+        }
+
+        p {
+            margin-bottom: 1.5em;
+            font-size: 1.05rem;
+        }
+
+        a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        code {
+            font-family: 'Roboto Mono', monospace;
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #ecba59;
+        }
+
+        pre {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 24px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-heading);
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 1.5em;
+        }
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        strong {
+            color: var(--text-heading);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: var(--border-color);
+            margin: 3em 0;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--accent-cyan);
+            margin: 0;
+            padding-left: 20px;
+            font-style: italic;
+            color: #9aa0a6;
+        }
+
+        /* Interactive Terminal Component */
+        .terminal-widget {
+            margin: 40px 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .terminal-header {
+            display: flex;
+            background: #1a1b20;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .term-tab {
+            padding: 12px 24px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.85rem;
+            color: #888;
+            background: transparent;
+            border: none;
+            border-right: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .term-tab:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        .term-tab.active {
+            color: #fff;
+            background: var(--card-bg);
+        }
+
+        .term-tab.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+        }
+
+        .term-tab[data-target="axiom"].active::after { background: var(--brand-axiom); box-shadow: 0 0 8px var(--brand-axiom); }
+        .term-tab[data-target="praxis"].active::after { background: var(--brand-praxis); box-shadow: 0 0 8px var(--brand-praxis); }
+        .term-tab[data-target="nexar"].active::after { background: var(--brand-nexar); box-shadow: 0 0 8px var(--brand-nexar); }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            min-height: 200px;
+            position: relative;
+        }
+        
+        .query-block {
+            margin-bottom: 16px;
+            color: #fff;
+        }
+        
+        .query-prefix {
+            color: var(--accent-cyan);
+            margin-right: 8px;
+        }
+
+        .output-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+            line-height: 1.6;
+        }
+
+        .output-panel.active {
+            display: block;
+        }
+
+        .term-accent-axiom { color: var(--brand-axiom); }
+        .term-accent-praxis { color: var(--brand-praxis); }
+        .term-accent-nexar { color: var(--brand-nexar); }
+        .term-white { color: #fff; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .author-block {
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .muted-text {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Utility */
+        .highlight {
+            color: var(--accent-cyan);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="muted-text" style="margin-bottom: 1em;">Daxini Stack Architecture Journal</div>
+    <h1>I built one AI model. Then I split it into three. Here's what changed.</h1>
+
+    <p>Six weeks ago, I shipped Zayvora — a local reasoning engine for engineers who think in systems.</p>
+
+    <p>One model. One purpose. One command:</p>
+
+<pre><code>ollama run daxini2404/zayvora</code></pre>
+
+    <p>It worked. Founders used it. Solo builders used it. People reasoning through architecture decisions used it.</p>
+
+    <p>But I kept seeing the same friction.</p>
+
+    <hr>
+
+    <h2>The problem with one mode</h2>
+
+    <p>Zayvora's core is a 6-stage reasoning loop:</p>
+
+<pre><code>Decompose → Retrieve → Synthesize → Calculate → Verify → Revise</code></pre>
+
+    <p>That loop is powerful for hard decisions. But not every question is a hard decision.</p>
+
+    <p>Sometimes you just need to ship a PR.</p>
+
+    <p>Sometimes you need to synthesize 40 research papers, not debate trade-offs.</p>
+
+    <p>A reasoning engine that treats every question like a philosophy exam becomes noise. You start skipping the output because it's 800 words when you needed 80.</p>
+
+    <p>I was over-engineering responses to under-complicated questions.</p>
+
+    <hr>
+
+    <h2>What I changed</h2>
+
+    <p>I didn't retrain anything. I didn't add parameters. I didn't increase the model size by a single byte.</p>
+
+    <p>I split the system prompt into three distinct operational modes — each one built for a different kind of thinking:</p>
+
+    <ul>
+        <li><strong>Zayvora:Axiom</strong> — for decisions under uncertainty. When you need to reason slowly, not confidently. When the wrong answer is worse than no answer.</li>
+        <li><strong>Zayvora:Praxis</strong> — for builders who need to ship. WHAT → WHY → HOW → WATCH OUT. Four lines. Then you move.</li>
+        <li><strong>Zayvora:Nexar</strong> — for research and synthesis. SIGNAL → EVIDENCE → GAPS → VECTOR. Surface what's true, not what sounds true.</li>
+    </ul>
+
+    <hr>
+
+    <h2>The same question. Three different answers.</h2>
+
+    <p>I asked all three the same thing: <em>"Should I use BM25 or dense embeddings for my RAG system?"</em></p>
+    <p>Use the terminal below to switch between the models and see exactly how the operational framework limits the neural weights, delivering completely different tactical scopes.</p>
+
+    <!-- Interactive Component -->
+    <div class="terminal-widget">
+        <div class="terminal-header">
+            <button class="term-tab active" data-target="axiom">zayvora:axiom</button>
+            <button class="term-tab" data-target="praxis">zayvora:praxis</button>
+            <button class="term-tab" data-target="nexar">zayvora:nexar</button>
+        </div>
+        <div class="terminal-body">
+            <div class="query-block"><span class="query-prefix">~ daxini/stack </span> <span class="term-white">❯ ollama run zayvora:<span id="term-command-val">axiom</span></span><br><br>
+            <span class="muted-text">>>> Should I use BM25 or dense embeddings for my RAG system?</span></div>
+
+            <!-- Axiom Output -->
+            <div id="output-axiom" class="output-panel active">
+                <span class="term-accent-axiom">STATE:</span> Analysis required to verify optimal retrieval layer for unclassified RAG index.<br><br>
+                <span class="term-accent-axiom">DECOMPOSE:</span> Decomposed into 5 sub-problems. Identified 3 missing structural assumptions regarding your latency caps, vector dimension budgets, and document chunk variance.<br><br>
+                <span class="term-accent-axiom">REASON:</span> BM25 is a lightweight ranking function strictly analyzing TF-IDF text density. Dense embeddings utilize vector semantics mapping high-dimensional spaces...<br><br>
+                <span class="term-accent-axiom">FLAG:</span> Without testing standard deviation on corpus vocabulary matching, relying purely on Dense vectors risks severe Out-Of-Vocabulary performance degradation. <br><br>
+                <span class="term-accent-axiom">DELIVER:</span> I recommend implementing a Reciprocal Rank Fusion (hybrid) approach rather than selecting a single binary point of failure.
+            </div>
+
+            <!-- Praxis Output -->
+            <div id="output-praxis" class="output-panel">
+                <span class="term-accent-praxis">→ WHAT:</span> Start with BM25.<br>
+                <span class="term-accent-praxis">→ WHY:</span> It requires zero GPU overhead, is significantly faster to debug, and sets a powerful baseline.<br>
+                <span class="term-accent-praxis">→ HOW:</span> <br>
+                   1. Instantiate ElasticSearch or standard BM25 indexing over your chunks.<br>
+                   2. Run 50 query samples.<br>
+                   3. Identify exactly where keyword search fails semantically.<br>
+                   4. Inject Dense embeddings ONLY when you hit that failure mode.<br>
+                <span class="term-accent-praxis">→ WATCH OUT:</span> Dense embeddings introduce high maintenance payload costs and index staleness. Don't build it until keyword-search explicitly fails you.
+            </div>
+
+            <!-- Nexar Output -->
+            <div id="output-nexar" class="output-panel">
+                <span class="term-accent-nexar">SIGNAL:</span> Hybrid retrieval frameworks currently demonstrate the highest quantitative precision floor for engineering RAG systems.<br><br>
+                <span class="term-accent-nexar">EVIDENCE:</span> <br>
+                - Literature confirms BM25 excels at exact keyword lookup (e.g. "ERROR CODE 1045").<br>
+                - Dense architectures capture abstract conceptual similarity, but degrade sharply on hyper-specific serial numbers.<br><br>
+                <span class="term-accent-nexar">GAPS:</span> Existing research assumes static vocabulary. We do not have data on your specific update velocity.<br><br>
+                <span class="term-accent-nexar">VECTOR:</span> To finalize the mapping, what is the exact distribution of 'exact-match' vs 'conceptual' searches triggered by your user inputs?
+            </div>
+        </div>
+    </div>
+    <!-- End Interactive Component -->
+
+    <p>Three different tools. Same 6-stage reasoning core underneath.</p>
+
+    <hr>
+
+    <h2>Why this matters for local-first AI</h2>
+
+    <p>Most people think model quality = parameter count.</p>
+
+    <p>It doesn't.</p>
+
+    <p>A 4.7GB model with the right operational frame outperforms a 70B model with the wrong one. Every time.</p>
+
+    <p>The system prompt is the architecture. The model is the hardware.</p>
+
+    <p>Zayvora:Praxis doesn't know more than Zayvora:Axiom. It just knows what kind of output you need, and it stops before it over-builds.</p>
+
+    <p>That's the entire insight.</p>
+
+    <hr>
+
+    <h2>What I spent to get here</h2>
+
+    <p>₹0.</p>
+
+    <p>No retraining. No fine-tuning. No GPU time. No cloud bill.</p>
+
+    <p>I spent time — which is the only thing I have to spend as a solo builder — thinking clearly about what each mode of reasoning actually requires.</p>
+
+    <p>Three Modelfiles. Three system prompts. One bash script to build them all.</p>
+
+    <p>That's the whole engineering delta.</p>
+
+    <hr>
+
+    <h2>How to run it</h2>
+
+<pre><code>ollama run zayvora:axiom    # for decisions
+ollama run zayvora:praxis   # for building
+ollama run zayvora:nexar    # for research</code></pre>
+
+    <p>Or build all three locally in one command:</p>
+
+<pre><code>chmod +x build_zayvora.sh
+./build_zayvora.sh</code></pre>
+
+    <p>Everything runs on your machine. No API key. No cloud. No subscription.</p>
+
+    <hr>
+
+    <h2>The rule I'm building by</h2>
+
+    <p><strong>One model family. Purpose-built modes. Zero framework debt.</strong></p>
+
+    <p>Not every problem needs a new model.<br>
+    Most problems need a clearer frame.</p>
+
+    <p>Zayvora:Axiom, Praxis, and Nexar are the same engine — running in the mode the problem actually requires.</p>
+
+    <p>That's the Daxini Stack philosophy: local-first, sovereign, and built for solo builders who don't have time for tools that think for themselves.</p>
+
+    <hr>
+
+    <div class="author-block">
+        <strong>Dharam Daxini</strong>
+        <span class="muted-text">Solo founder, ViaDecide · Gandhidham, Kutch</span>
+        <div>
+            <a href="https://daxini.xyz" target="_blank">daxini.xyz</a> · 
+            <a href="https://x.com/daxini2404" target="_blank">@daxini2404</a>
+        </div>
+        <div class="muted-text" style="margin-top: 12px; font-style: italic;">
+            Zayvora Engine · Daxini Stack v0.9.1<br>
+            Try it: <code>ollama pull daxini2404/zayvora</code>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.term-tab');
+        const panels = document.querySelectorAll('.output-panel');
+        const commandValSpan = document.getElementById('term-command-val');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active from all
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                // Add active to clicked target
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(`output-${targetId}`).classList.add('active');
+                
+                // Update terminal running command text
+                commandValSpan.textContent = targetId;
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
