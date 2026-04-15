@@ -1,0 +1,29 @@
+[
+  {
+    "title": "I Spent 8 Hours Building the AI Operating System India Doesn't Know It Needs Yet",
+    "url": "/i-spent-8-hours-building-ai-operating-system-india-doesnt-know-it-needs-yet/index.html",
+    "tags": ["zayvora", "AI", "Commerce", "Knowledge systems", "The Daxini Stack"],
+    "connections": [
+      "/zayvora-split/index.html",
+      "/my-own-ai-brain/index.html"
+    ]
+  },
+  {
+    "title": "I built one AI model. Then I split it into three. Here's what changed.",
+    "url": "/zayvora-split/index.html",
+    "tags": ["zayvora", "ViaDecide", "AI", "Knowledge systems", "The Daxini Stack"],
+    "connections": [
+      "/i-spent-8-hours-building-ai-operating-system-india-doesnt-know-it-needs-yet/index.html",
+      "/my-own-ai-brain/index.html"
+    ]
+  },
+  {
+    "title": "I Built My Own AI Brain",
+    "url": "/my-own-ai-brain/index.html",
+    "tags": ["zayvora", "AI", "Knowledge systems"],
+    "connections": [
+      "/i-spent-8-hours-building-ai-operating-system-india-doesnt-know-it-needs-yet/index.html",
+      "/zayvora-split/index.html"
+    ]
+  }
+]
