@@ -42,6 +42,7 @@
   let selected = 'All';
   let articles = [];
   let graph = [];
+  let graphNodesByUrl = new Map();
 
   clusterEl.innerHTML = clusters.map((c) => `<button class="chip" data-tag="${c}">${c}</button>`).join('');
   const chips = Array.from(document.querySelectorAll('.chip'));
@@ -85,12 +86,13 @@
     const centerX = width / 2;
     const centerY = height / 2;
     const points = nodes.map((n, i) => ({
-      slug: n.node,
+      id: n.node,
+      label: n.title || n.node,
       x: centerX + Math.cos((Math.PI * 2 * i) / Math.max(nodes.length, 1)) * radius,
       y: centerY + Math.sin((Math.PI * 2 * i) / Math.max(nodes.length, 1)) * radius
     }));
 
-    const getPoint = (slug) => points.find((p) => p.slug === slug);
+    const getPoint = (id) => points.find((p) => p.id === id);
     const lines = [];
     for (const n of nodes) {
       const from = getPoint(n.node);
@@ -100,7 +102,7 @@
       }
     }
 
-    const circles = points.map((p) => `<g><circle cx="${p.x}" cy="${p.y}" r="8" fill="#14b8a6" /><text x="${p.x + 10}" y="${p.y + 4}" fill="#cbd5e1" font-size="10">${p.slug.slice(0, 18)}</text></g>`);
+    const circles = points.map((p) => `<g><circle cx="${p.x}" cy="${p.y}" r="8" fill="#14b8a6" /><text x="${p.x + 10}" y="${p.y + 4}" fill="#cbd5e1" font-size="10">${p.label.slice(0, 24)}</text></g>`);
     graphEl.innerHTML = [...lines, ...circles].join('');
   }
 
@@ -114,12 +116,35 @@
   });
   searchEl.addEventListener('input', renderCards);
 
-  const [articlesRes, graphRes] = await Promise.all([
+  const [articlesRes, graphIndexRes, graphRes] = await Promise.all([
     fetch('../data/articles.json', { cache: 'no-store' }),
+    fetch('../articles/index.json', { cache: 'no-store' }),
     fetch('../data/knowledge_graph.json', { cache: 'no-store' })
   ]);
   articles = await articlesRes.json();
-  graph = await graphRes.json();
+
+  let indexedGraph = [];
+  if (graphIndexRes.ok) {
+    indexedGraph = await graphIndexRes.json();
+  }
+
+  if (indexedGraph.length) {
+    graph = indexedGraph.map((item) => ({
+      node: item.url,
+      related: item.connections || [],
+      title: item.title
+    }));
+    graphNodesByUrl = new Map(indexedGraph.map((item) => [item.url, item.title]));
+  } else {
+    graph = await graphRes.json();
+    graphNodesByUrl = new Map(articles.map((item) => [item.path, item.title]));
+  }
+
+  graph = graph.map((node) => ({
+    ...node,
+    title: node.title || graphNodesByUrl.get(node.node) || String(node.node || '').replace(/^\//, '').replace(/\/index\.html$/, '')
+  }));
+
   renderCards();
   renderGraph();
 })();
