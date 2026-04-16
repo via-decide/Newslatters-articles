@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invisible Systems</title>
+    <meta name="description" content="An interactive essay on invisible systems, quiet infrastructure, and the builder journey toward automation.">
+    <link rel="stylesheet" href="../styles/article-reader.css">
+    <style>
+        .timeline {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .timeline-step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px;
+            align-items: start;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 12px;
+            background: #f8fafc;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .timeline-step input {
+            margin-top: 5px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+            cursor: pointer;
+        }
+
+        .timeline-step.done {
+            border-color: #93c5fd;
+            background: #eef4ff;
+        }
+
+        .timeline-step h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .timeline-step p {
+            margin: 0.2rem 0 0;
+            color: var(--muted);
+        }
+
+        .journey-summary {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            color: #1f3a8a;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .insight-accordion {
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            background: #f8fafc;
+            margin-top: 12px;
+        }
+
+        .insight-accordion + .insight-accordion {
+            margin-top: 10px;
+        }
+
+        .insight-accordion summary {
+            padding: 12px 14px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #0f172a;
+        }
+
+        .insight-accordion p {
+            margin: 0;
+            padding: 0 14px 14px;
+        }
+
+        .quote-highlight.hover-quote {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .quote-highlight.hover-quote:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.12);
+        }
+    </style>
+</head>
+<body>
+<div class="reader-progress" aria-hidden="true">
+    <div id="reader-progress-bar" class="reader-progress__bar"></div>
+</div>
+
+<header class="reader-header">
+    <div class="reader-header__inner">
+        <nav class="reader-brand" aria-label="Global">
+            <a href="../index.html">ViaDecide</a>
+            <a href="../index.html">Articles</a>
+            <a href="../index.html">Back to index</a>
+        </nav>
+        <nav class="reader-links" aria-label="Sections">
+            <a href="#invisible" data-section-link>Invisible systems</a>
+            <a href="#boring" data-section-link>Boring pipelines</a>
+            <a href="#journey" data-section-link>Builder journey</a>
+            <a href="#freedom" data-section-link>Freedom</a>
+            <a href="#question" data-section-link>Question</a>
+            <span id="reading-time" class="reading-time">~0 min read</span>
+        </nav>
+    </div>
+</header>
+
+<main class="reader-main" id="article-body">
+    <article>
+        <h1>Invisible Systems</h1>
+        <p class="deck">Why the best infrastructure disappears from your attention—and gives your thinking back.</p>
+
+        <section id="invisible" data-section class="article-section">
+            <h2>Invisible systems</h2>
+            <p class="reveal">I noticed something strange last week.</p>
+            <p class="reveal">A deployment succeeded, a form submission went through, and a GitHub issue appeared exactly where it was supposed to. No dashboards were open. No commands were run. No one was watching the system.</p>
+            <p class="reveal">It just worked.</p>
+            <p class="reveal">Which is when I realized something: the most important systems in our lives are the ones we never see.</p>
+            <p class="reveal">When everything works, the system disappears. That is the strange property of good infrastructure: success makes it invisible.</p>
+            <div class="quote-highlight hover-quote">
+                <p>"The best systems aren’t the ones you admire. They’re the ones you forget you built."</p>
+                <button class="copy-quote" type="button">Copy quote</button>
+            </div>
+        </section>
+
+        <section id="boring" data-section class="article-section">
+            <h2>Boring pipelines</h2>
+            <p class="reveal">Most developers are trained to build systems that are visible: dashboards, metrics, interfaces full of charts. Visibility is useful, but it carries a tradeoff—systems that demand attention assume you are always watching.</p>
+            <p class="reveal">The most reliable infrastructure I’ve built follows the opposite philosophy: make the system boring. A form lands in a mailbox. A GitHub Action compiles static pages. Cloudflare distributes the result.</p>
+            <p class="reveal">No one checks it daily because there is nothing to check. It runs, disappears, and returns your focus to work that matters.</p>
+
+            <details class="insight-accordion">
+                <summary>Deep thought: why DNS feels magical</summary>
+                <p>Typing a domain triggers global distributed machinery—recursive resolvers, authoritative servers, caches, and packets crossing continents. You experience all of that as a blinking cursor. Invisible by design.</p>
+            </details>
+            <details class="insight-accordion">
+                <summary>Deep thought: compounding mental bandwidth</summary>
+                <p>Small automations do not look dramatic, but each one removes tiny cognitive interruptions. Those recovered seconds compound into uninterrupted problem-solving time.</p>
+            </details>
+            <details class="insight-accordion">
+                <summary>Deep thought: visibility vs absence</summary>
+                <p>Large teams optimize for observability because coordination is hard. Solo builders often optimize for absence: if a system is healthy, it should leave your mind entirely.</p>
+            </details>
+        </section>
+
+        <section id="journey" data-section class="article-section">
+            <h2>Builder journey checklist</h2>
+            <p>Track the transition from manual friction to invisible infrastructure.</p>
+            <ul class="timeline" id="timeline-checklist">
+                <li class="timeline-step">
+                    <input type="checkbox" id="step-1" data-step>
+                    <label for="step-1">
+                        <h3>Stage 1 — Visible friction</h3>
+                        <p>Manual deployments, repetitive file moves, and constant context switching.</p>
+                    </label>
+                </li>
+                <li class="timeline-step">
+                    <input type="checkbox" id="step-2" data-step>
+                    <label for="step-2">
+                        <h3>Stage 2 — Script the pain</h3>
+                        <p>Automate recurring tasks with lightweight scripts and single-purpose flows.</p>
+                    </label>
+                </li>
+                <li class="timeline-step">
+                    <input type="checkbox" id="step-3" data-step>
+                    <label for="step-3">
+                        <h3>Stage 3 — Remove watchfulness</h3>
+                        <p>Build for reliability so systems no longer require dashboards as a habit loop.</p>
+                    </label>
+                </li>
+                <li class="timeline-step">
+                    <input type="checkbox" id="step-4" data-step>
+                    <label for="step-4">
+                        <h3>Stage 4 — Infrastructure fades</h3>
+                        <p>The pipeline becomes background utility. You work on ideas, not maintenance.</p>
+                    </label>
+                </li>
+            </ul>
+            <p id="journey-summary" class="journey-summary">0 / 4 completed. Your system is still very visible.</p>
+        </section>
+
+        <section id="freedom" data-section class="article-section">
+            <h2>Freedom through absence</h2>
+            <p class="reveal">When infrastructure disappears from your attention, freedom appears. You stop managing tools and start exploring ideas, experiments, and better questions.</p>
+            <p class="reveal">Invisible systems are not glamorous, but they quietly keep the lights on while your creative bandwidth goes to higher-leverage work.</p>
+        </section>
+
+        <section id="question" data-section class="article-section">
+            <h2>Question</h2>
+            <p class="reveal">What’s one system in your life that could disappear if you automated it properly?</p>
+        </section>
+    </article>
+</main>
+
+<script src="../scripts/article-reader.js"></script>
+<script>
+(function () {
+    const revealNodes = Array.from(document.querySelectorAll('.reveal'));
+    const steps = Array.from(document.querySelectorAll('[data-step]'));
+    const summary = document.getElementById('journey-summary');
+
+    if (typeof IntersectionObserver !== 'undefined') {
+        const revealObserver = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            });
+        }, { threshold: 0.18 });
+
+        revealNodes.forEach((node) => revealObserver.observe(node));
+    } else {
+        revealNodes.forEach((node) => node.classList.add('visible'));
+    }
+
+    function renderJourney() {
+        const completed = steps.filter((step) => step.checked).length;
+        const total = steps.length;
+
+        steps.forEach((step) => {
+            const card = step.closest('.timeline-step');
+            if (!card) return;
+            card.classList.toggle('done', step.checked);
+        });
+
+        if (completed === total) {
+            summary.textContent = `${completed} / ${total} completed. Great—your system can now fade into the background.`;
+            return;
+        }
+
+        summary.textContent = `${completed} / ${total} completed. Your system is still ${completed < 2 ? 'very visible' : 'partially visible'}.`;
+    }
+
+    steps.forEach((step) => {
+        step.addEventListener('change', renderJourney);
+    });
+
+    renderJourney();
+})();
+</script>
+</body>
+</html>
