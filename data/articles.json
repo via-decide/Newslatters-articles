@@ -1,5 +1,30 @@
 [
   {
+    "title": "Why Local-First Is Not About Rejecting The Cloud",
+    "slug": "local-first-not-about-rejecting-cloud",
+    "date": "2026-04-16",
+    "author": "Dharam Daxini",
+    "tags": [
+      "ViaDecide",
+      "Local-first",
+      "Architecture",
+      "Research"
+    ],
+    "description": "A conversation about infrastructure, control, and why local-first is about optionality—not anti-cloud ideology.",
+    "summary": "Local-first is not a rejection of cloud infrastructure; it is a design question about ownership, constraints, and long-term control.",
+    "concepts": [
+      "local-first",
+      "cloud infrastructure",
+      "sovereignty",
+      "architecture",
+      "optional dependencies",
+      "offline-first"
+    ],
+    "content": "Why Local-First Is Not About Rejecting The Cloud — A conversation about infrastructure, control, and what happens when you build your own.",
+    "newsletter": "daxini-stack",
+    "path": "/articles/local-first-not-about-rejecting-cloud.html"
+  },
+  {
     "title": "The Difference Between Answering and Reasoning",
     "slug": "answering-vs-reasoning",
     "date": "2026-04-15",
