@@ -1,7 +1,16 @@
 [
   {
+    "node": "invisible-systems",
+    "related": [
+      "local-first-not-about-rejecting-cloud",
+      "answering-vs-reasoning",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet"
+    ]
+  },
+  {
     "node": "local-first-not-about-rejecting-cloud",
     "related": [
+      "invisible-systems",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
     ]
@@ -9,6 +18,7 @@
   {
     "node": "answering-vs-reasoning",
     "related": [
+      "invisible-systems",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
       "local-first-not-about-rejecting-cloud"
@@ -17,6 +27,7 @@
   {
     "node": "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
     "related": [
+      "invisible-systems",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
       "i-built-my-own-ai-brain",
       "local-first-not-about-rejecting-cloud"

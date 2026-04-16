@@ -1,5 +1,19 @@
 [
   {
+    "title": "Invisible Systems",
+    "url": "/articles/invisible-systems.html",
+    "tags": [
+      "ViaDecide",
+      "Automation",
+      "Research",
+      "Infrastructure"
+    ],
+    "connections": [
+      "/articles/local-first-not-about-rejecting-cloud.html",
+      "/articles/answering-vs-reasoning.html"
+    ]
+  },
+  {
     "title": "The Difference Between Answering and Reasoning",
     "url": "/articles/answering-vs-reasoning.html",
     "tags": [
