@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" role="img" aria-labelledby="lt ld">
+  <title id="lt">Local-first model diagram</title>
+  <desc id="ld">Developer flows through Infrastructure and Distribution to Users.</desc>
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFB020"/>
+      <stop offset="100%" stop-color="#FFD180"/>
+    </linearGradient>
+    <marker id="larrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,3 L0,6 z" fill="#FFB020"/>
+    </marker>
+  </defs>
+  <rect x="16" y="45" width="190" height="130" rx="16" fill="#101A2E" stroke="#2C3F66"/>
+  <rect x="246" y="45" width="190" height="130" rx="16" fill="#101A2E" stroke="url(#lg)" stroke-width="2"/>
+  <rect x="476" y="45" width="190" height="130" rx="16" fill="#101A2E" stroke="#2C3F66"/>
+  <rect x="706" y="45" width="190" height="130" rx="16" fill="#101A2E" stroke="#2C3F66"/>
+  <text x="111" y="118" text-anchor="middle" fill="#E6EDF3" font-family="Inter, system-ui" font-size="24">Developer</text>
+  <text x="341" y="118" text-anchor="middle" fill="#E6EDF3" font-family="Inter, system-ui" font-size="23">Infrastructure</text>
+  <text x="571" y="118" text-anchor="middle" fill="#E6EDF3" font-family="Inter, system-ui" font-size="23">Distribution</text>
+  <text x="801" y="118" text-anchor="middle" fill="#E6EDF3" font-family="Inter, system-ui" font-size="24">Users</text>
+  <line x1="208" y1="110" x2="242" y2="110" stroke="#FFB020" stroke-width="4" marker-end="url(#larrow)"/>
+  <line x1="438" y1="110" x2="472" y2="110" stroke="#FFB020" stroke-width="4" marker-end="url(#larrow)"/>
+  <line x1="668" y1="110" x2="702" y2="110" stroke="#FFB020" stroke-width="4" marker-end="url(#larrow)"/>
+</svg>
