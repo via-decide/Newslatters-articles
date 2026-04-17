@@ -1,5 +1,33 @@
 [
   {
+    "title": "Why Most AI Builders Never Ship",
+    "url": "/why-most-ai-builders-never-ship/index.html",
+    "tags": [
+      "ViaDecide",
+      "AI",
+      "SoloFounder",
+      "BuildingInPublic"
+    ],
+    "connections": [
+      "/articles/invisible-systems.html",
+      "/articles/answering-vs-reasoning.html"
+    ]
+  },
+  {
+    "title": "Local-First Is Not About Rejecting the Cloud",
+    "url": "/articles/local-first-cloud.html",
+    "tags": [
+      "ViaDecide",
+      "Local-first",
+      "Research",
+      "Architecture"
+    ],
+    "connections": [
+      "/articles/local-first-not-about-rejecting-cloud.html",
+      "/articles/invisible-systems.html"
+    ]
+  },
+  {
     "title": "Invisible Systems",
     "url": "/articles/invisible-systems.html",
     "tags": [

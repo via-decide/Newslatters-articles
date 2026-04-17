@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Most AI Builders Never Ship — Dharam</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500&family=Epilogue:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg:       #080807;
+  --surface:  #0f0f0d;
+  --surface2: #161613;
+  --border:   #222220;
+  --border2:  #2e2e2a;
+  --gold:     #c8a84b;
+  --gold2:    #e8c96a;
+  --rust:     #c9542a;
+  --text:     #e6e0d4;
+  --text2:    #b8b2a6;
+  --muted:    #5e5c55;
+  --faint:    #1e1e1b;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Grain overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.35;
+}
+
+/* ── Layout ── */
+.wrapper {
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 72px 32px 120px;
+  opacity: 0;
+  animation: fadeIn 0.9s ease 0.1s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ── Top bar ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 64px;
+  animation: slideDown 0.6s ease 0.2s both;
+}
+@keyframes slideDown {
+  from { opacity:0; transform: translateY(-12px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+.topbar-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.topbar-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.topbar-dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Hero ── */
+.hero {
+  margin-bottom: 56px;
+  animation: slideUp 0.7s ease 0.3s both;
+}
+@keyframes slideUp {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+.day-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.day-label::after {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 1px;
+  background: var(--rust);
+  opacity: 0.6;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 7vw, 68px);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: #f2ece0;
+  margin-bottom: 28px;
+}
+h1 .italic {
+  font-style: italic;
+  color: var(--gold2);
+}
+
+.hero-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-left: 2px solid var(--border2);
+  padding-left: 14px;
+}
+
+/* ── Divider ── */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 44px 0;
+}
+.divider-line { flex:1; height:1px; background: var(--border); }
+.divider-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--border2);
+  letter-spacing: 0.15em;
+}
+
+/* ── Body prose ── */
+.prose p {
+  color: var(--text2);
+  margin-bottom: 24px;
+  font-size: 17px;
+  line-height: 1.9;
+}
+.prose p strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.prose p:last-child { margin-bottom: 0; }
+
+/* ── Section heading ── */
+h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 56px 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+/* ── Two-type contrast block ── */
+.contrast {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin: 40px 0;
+  border: 1px solid var(--border);
+  background: var(--border);
+}
+.contrast-cell {
+  background: var(--surface2);
+  padding: 32px 28px;
+}
+.contrast-cell .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.contrast-cell.talker .num { color: var(--muted); }
+.contrast-cell.builder .num { color: var(--gold); }
+.contrast-cell .title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+.contrast-cell.talker .title { color: var(--text2); }
+.contrast-cell.builder .title { color: var(--gold2); }
+.contrast-cell .desc {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  font-family: 'Epilogue', sans-serif;
+  font-weight: 300;
+}
+
+/* ── Pull quote ── */
+.pull-quote {
+  margin: 44px 0;
+  padding: 32px 36px;
+  border-left: 3px solid var(--gold);
+  background: linear-gradient(to right, rgba(200,168,75,0.05), transparent);
+  position: relative;
+}
+.pull-quote::before {
+  content: '\201C';
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 80px;
+  color: var(--gold);
+  opacity: 0.15;
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  line-height: 1;
+}
+.pull-quote p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(18px, 3vw, 22px);
+  line-height: 1.6;
+  color: #d8d2c4;
+}
+
+/* ── Mono callout ── */
+.mono-block {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--gold);
+  background: rgba(200,168,75,0.04);
+  border: 1px solid rgba(200,168,75,0.12);
+  padding: 24px 28px;
+  margin: 36px 0;
+  position: relative;
+  overflow: hidden;
+}
+.mono-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0.3;
+}
+.mono-block .comment { color: var(--muted); }
+
+/* ── Stat / highlight strip ── */
+.highlight-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 36px 0;
+  margin: 44px 0;
+}
+.highlight-strip p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--text2);
+  margin-bottom: 18px;
+}
+.highlight-strip p:last-child { margin-bottom: 0; }
+.highlight-strip .emphasis {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ── Location block ── */
+.location-block {
+  background: var(--faint);
+  border: 1px solid var(--border);
+  padding: 32px;
+  margin: 44px 0;
+  position: relative;
+}
+.location-block::before {
+  content: 'KUTCH, GUJARAT — BHARAT';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--rust);
+  display: block;
+  margin-bottom: 18px;
+}
+.location-block p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text2);
+  margin-bottom: 16px;
+}
+.location-block p:last-child { margin-bottom: 0; }
+.location-block strong { color: var(--text); font-weight: 500; }
+
+/* ── Close / CTA ── */
+.close-block {
+  margin-top: 56px;
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  position: relative;
+  overflow: hidden;
+}
+.close-block::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(to right, var(--rust), var(--gold), transparent);
+}
+.close-block p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text2);
+  margin-bottom: 18px;
+}
+.close-block p:last-child { margin-bottom: 0; }
+.close-block .cta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--rust);
+  letter-spacing: 0.08em;
+  margin-top: 28px !important;
+}
+
+/* ── Footer / byline ── */
+.byline {
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.byline-left {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.byline-left strong {
+  color: var(--text2);
+  font-weight: 500;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+/* ── Tags ── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 36px;
+}
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  padding: 5px 12px;
+  transition: color 0.2s, border-color 0.2s;
+  cursor: default;
+}
+.tag:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+/* ── Reading progress bar ── */
+#progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(to right, var(--rust), var(--gold));
+  z-index: 999;
+  transition: width 0.1s linear;
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 560px) {
+  .wrapper { padding: 48px 20px 80px; }
+  .contrast { grid-template-columns: 1fr; }
+  .byline { flex-direction: column; }
+  .close-block { padding: 28px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div class="wrapper">
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-dot"></div>
+    <span class="topbar-text">Building in Public</span>
+    <div class="topbar-line"></div>
+    <span class="topbar-text">Day 02</span>
+    <div class="topbar-line"></div>
+    <span class="topbar-text">ViaDecide</span>
+    <div class="topbar-dot"></div>
+  </div>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="day-label">Day 2 / Solo Founder Log</div>
+    <h1>Why Most AI Builders<br><span class="italic">Never Ship</span></h1>
+    <div class="hero-sub">Kutch, Gujarat &nbsp;·&nbsp; Bharat &nbsp;·&nbsp; ~1500 words</div>
+  </div>
+
+  <!-- Intro -->
+  <div class="prose reveal">
+    <p>There are two types of people in the AI space right now.</p>
+    <p>The first type wakes up every morning, opens Twitter, checks what new model dropped overnight, writes a 10-tweet thread about why it changes everything, gets 200 likes, and feels productive. They've tried every tool. They have opinions on every benchmark. They can tell you the difference between Claude 3.5 and GPT-4o and Gemini 1.5 in three sentences. Ask them what they've shipped in the last 90 days and the conversation gets quiet very fast.</p>
+    <p>The second type wakes up, opens their code editor, and stares at a bug they've been fighting for three days. They don't post about it. They don't have a hot take ready. They just fix it, push the commit, and move on to the next problem. Their LinkedIn is quiet. Their GitHub is not.</p>
+    <p>I used to wonder which type I was. I don't wonder anymore.</p>
+  </div>
+
+  <!-- Two types grid -->
+  <div class="contrast reveal">
+    <div class="contrast-cell talker">
+      <div class="num">Type 01 — The Talker</div>
+      <div class="title">Tool Discusser</div>
+      <div class="desc">Benchmarks. Reviews. Hot takes. "Have you tried X yet?" High noise. Constant motion. Zero compounding leverage. Opinions on everything. Skin in nothing.</div>
+    </div>
+    <div class="contrast-cell builder">
+      <div class="num">Type 02 — The Builder</div>
+      <div class="title">System Builder</div>
+      <div class="desc">Quiet. Shipping. Breaking things. Then fixing them. Ugly commits. Honest progress. Feedback from reality, not the feed. Compounding slowly — then all at once.</div>
+    </div>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 01</div><div class="divider-line"></div></div>
+
+  <!-- The Noise Economy -->
+  <h2 class="reveal">The Noise Economy</h2>
+
+  <div class="prose reveal">
+    <p>The AI space has a noise problem, and it's getting worse.</p>
+    <p>Every week there's a new model. Every day there's a new wrapper tool. Every hour someone is posting about "the future of work" or "how AI will replace X profession" or "10 prompts that will make you a 10x developer." The feeds are full. The actual product landscape? Mostly empty.</p>
+    <p>This isn't unique to AI. Every technology wave does this. The internet did it. Mobile did it. Crypto definitely did it. There's always a moment where the discourse explodes before the real builders have shipped anything meaningful. The noise is loudest right before something real actually happens.</p>
+    <p>But here's what's different about AI — the barrier to talking is so low that the gap between talkers and builders has never been wider. You can generate a 2000-word article about AI strategy in 30 seconds. You can create a demo video, write a product spec, design a landing page — all without building a single working system. <strong>The tools for faking it have never been better.</strong></p>
+    <p>So the people who are actually building? They're harder to find. And that gap — between the noise and the actual work — is exactly where the opportunity lives.</p>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 02</div><div class="divider-line"></div></div>
+
+  <!-- What I'm Building -->
+  <h2 class="reveal">What I'm Building and Why It's Messy</h2>
+
+  <div class="prose reveal">
+    <p>Let me be honest about where I am right now.</p>
+    <p>I'm building a reasoning engine. The core idea is simple: solo founders make decisions alone. No co-founder to pressure-test your thinking. No board to tell you when you're rationalizing. No senior advisor on speed dial at 11pm when you're about to make a call that could sink six months of work. You're just you, your instincts, and a laptop.</p>
+    <p>Most AI tools right now are built for execution. Give it a task, get an output. That's useful, but it's not the hard problem. <strong>The hard problem for solo founders isn't execution — it's judgment.</strong> It's knowing which problem to solve. It's catching yourself before you optimize a metric that doesn't matter. It's recognizing the difference between a real signal and your own fear dressed up as strategy.</p>
+    <p>That's what I'm trying to build. A system that thinks <em>with</em> you, not just <em>for</em> you.</p>
+  </div>
+
+  <div class="mono-block reveal">
+    <span class="comment">// current state of the build</span><br><br>
+    architecture_version    = 3<br>
+    days_since_last_refactor = 4<br>
+    parts_that_feel_elegant  = some<br>
+    parts_that_are_embarrassing = also some<br>
+    <br>
+    <span class="comment">// this is what building actually looks like</span><br>
+    status = "messy, iterative, compounding"
+  </div>
+
+  <div class="prose reveal">
+    <p>Is it working perfectly right now? No. The architecture has changed three times in the last two weeks. There are parts of it that feel elegant and parts of it that are genuinely embarrassing to look at. Some days I make real progress. Some days I spend four hours refactoring something I'll probably throw out next week.</p>
+    <p>This is what building actually looks like. Not a clean progress bar. Not a launch tweet with a beautiful screenshot. Just messy, iterative, sometimes-frustrating work that compounds slowly until one day it doesn't feel slow anymore.</p>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 03</div><div class="divider-line"></div></div>
+
+  <!-- Why People Don't Ship -->
+  <h2 class="reveal">The Real Reason People Don't Ship</h2>
+
+  <div class="prose reveal">
+    <p>I've thought about this a lot because I've been on both sides of it.</p>
+    <p>The reason most AI builders never ship isn't laziness. It isn't lack of ideas. It isn't even lack of skill. <strong>The reason is that shipping requires you to be wrong in public, and most people aren't willing to pay that price.</strong></p>
+    <p>When you're discussing tools, you're always on safe ground. If GPT-4o underperforms, that's OpenAI's problem. If a framework turns out to be overhyped, you were just reporting what you saw. There's no skin in the game. The feedback loop is zero.</p>
+    <p>When you're building a system, you're betting your time, your attention, and your reputation on something that might not work. Every architecture decision you make is a hypothesis that the market will eventually test. Every hour you spend on feature X instead of feature Y is a bet. And bets can be wrong.</p>
+  </div>
+
+  <div class="pull-quote reveal">
+    <p>Most people find ways to stay in the comfortable middle. Research mode. "I'm still figuring out the architecture." These are legitimate phases — but they're also excellent excuses to never actually ship anything.</p>
+  </div>
+
+  <div class="prose reveal">
+    <p>The antidote isn't to stop thinking. The antidote is to set a deadline where thinking ends and building starts, and then hold it.</p>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 04</div><div class="divider-line"></div></div>
+
+  <!-- Building from Kutch -->
+  <h2 class="reveal">Building from Kutch</h2>
+
+  <div class="location-block reveal">
+    <p>I'm in Kutch, Gujarat. Not Bangalore. Not Mumbai. Not in a co-working space surrounded by other founders with investor connections and warm intros to YC. I'm in a small city in western India that most people outside Gujarat can't place on a map.</p>
+    <p>And I'll tell you what that forces you to do: <strong>it forces you to be real.</strong></p>
+    <p>There's no ecosystem here to lean on. No local startup event to attend to feel like you're making progress without actually making progress. No coffee meeting with an advisor who'll validate your roadmap. You either build or you don't. The feedback is direct because you can't hide behind activity.</p>
+    <p>The founders who build in the absence of infrastructure develop something that founders in well-resourced ecosystems sometimes don't — an instinct for what actually matters. <strong>When every decision has a real cost, you stop optimizing for looking productive and start optimizing for being productive.</strong></p>
+    <p>This is what I mean when I say Bharat-first. Not as a flag to wave. As a genuine operating philosophy. Build for constraints. Build lean. Build for the user who doesn't have a perfect internet connection or a premium subscription or three backup options. Build something that works in the real world, not the demo environment.</p>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 05</div><div class="divider-line"></div></div>
+
+  <!-- Opportunity Cost -->
+  <h2 class="reveal">What Talking vs Building Actually Costs You</h2>
+
+  <div class="prose reveal">
+    <p>Here's something that took me longer than I'd like to admit to fully understand.</p>
+    <p>Every hour you spend consuming content about AI is an hour you're not building. That seems obvious when you say it out loud. But the insidious thing is that consuming AI content <em>feels</em> like work. It feels like research. It feels like staying informed. And some of it genuinely is. But there's a point — and you know when you've crossed it — where you're not learning anything new. You're just staying comfortable.</p>
+  </div>
+
+  <div class="highlight-strip reveal">
+    <p>The opportunity cost isn't just time. It's compounding.</p>
+    <p>When you ship something, even something broken, you generate real feedback. Real feedback improves your judgment. Better judgment leads to better decisions on the next system. <span class="emphasis">That loop, run consistently over 12 months, creates a gap between you and the people who spent those same 12 months staying informed that almost can't be closed.</span></p>
+    <p>The people who shipped in year one of mobile — even the ones who shipped bad apps — understood mobile UX in year three in a way that no amount of reading about mobile could teach. The same principle holds here.</p>
+    <p><span class="emphasis">You cannot read your way to product sense. You have to build it.</span></p>
+  </div>
+
+  <div class="divider reveal"><div class="divider-line"></div><div class="divider-mark">§ 06</div><div class="divider-line"></div></div>
+
+  <!-- Where I Am -->
+  <h2 class="reveal">Where I Am Right Now</h2>
+
+  <div class="prose reveal">
+    <p>The reasoning engine is real. It's running. It's not public yet because it's not ready — and I've learned enough to know the difference between "not ready" and "I'm scared to ship."</p>
+    <p>Right now it's not ready.</p>
+    <p>But it will be. And when it is, it'll have been shaped by real problems I ran into while building it, not theoretical problems I read about in someone else's blog post. That's the only thing that matters to me at this point in the build — that every decision in the system reflects genuine learning, not borrowed thinking.</p>
+  </div>
+
+  <!-- Close -->
+  <div class="close-block reveal">
+    <p>If you're somewhere in the AI space right now — as a developer, a founder, a product person — ask yourself honestly: in the last 30 days, what have you shipped?</p>
+    <p>Not published. Not posted. Not designed in Figma or architected in Notion. Actually shipped. Put in front of users. Tested against reality.</p>
+    <p>If the answer is nothing, that's not a judgment. It's just data. And data is useful.</p>
+    <p>The noise isn't going to quiet down. If anything, it's going to get louder as the models get better and the tools multiply. The only way to stay oriented is to keep your hands on something real.</p>
+    <p><strong>Build something. Break it. Fix it. Ship it.</strong><br>Everything else is just content.</p>
+    <p class="cta">→ What are you shipping this week? Drop it in the comments.</p>
+  </div>
+
+  <!-- Byline -->
+  <div class="byline reveal">
+    <div class="byline-left">
+      <strong>Dharam</strong>
+      Building ViaDecide — a reasoning engine for solo founders<br>
+      Day 2 / Building in Public / Kutch, Bharat
+    </div>
+  </div>
+
+  <!-- Tags -->
+  <div class="tags reveal">
+    <span class="tag">#BuildingInPublic</span>
+    <span class="tag">#SoloFounder</span>
+    <span class="tag">#AITools</span>
+    <span class="tag">#ViaDecide</span>
+    <span class="tag">#Daxini</span>
+    <span class="tag">#BharatFirst</span>
+    <span class="tag">#IndiaStartups</span>
+    <span class="tag">#ShipIt</span>
+  </div>
+
+</div><!-- /wrapper -->
+
+<script>
+  // Reading progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

@@ -48,5 +48,21 @@
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
       "local-first-not-about-rejecting-cloud"
     ]
+  },
+  {
+    "node": "local-first-cloud",
+    "related": [
+      "local-first-not-about-rejecting-cloud",
+      "invisible-systems",
+      "why-most-ai-builders-never-ship"
+    ]
+  },
+  {
+    "node": "why-most-ai-builders-never-ship",
+    "related": [
+      "invisible-systems",
+      "answering-vs-reasoning",
+      "local-first-cloud"
+    ]
   }
 ]
