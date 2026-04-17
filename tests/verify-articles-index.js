@@ -13,7 +13,8 @@ const ignored = new Set([
   'about/dharam-daxini/index.html',
   'zayvora/index.html',
   'newsletter/zayvora/index.html',
-  'newsletter/daxini/index.html'
+  'newsletter/daxini/index.html',
+  '.codex/instructions.md'
 ]);
 
 function walk(dir, files) {
