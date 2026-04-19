@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Why We Stopped Using Auth Libraries</title>
+  <style>
+    body { font-family: Inter, Arial, sans-serif; margin: 0; background: #f5f5f5; color: #18181b; }
+    main { max-width: 760px; margin: 0 auto; padding: 16px; }
+    .tabs, .subtabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    button { border: 1px solid #d4d4d8; background: white; border-radius: 999px; padding: 8px 12px; font-weight: 600; cursor: pointer; }
+    button.active { background: #18181b; color: white; border-color: #18181b; }
+    .card { background: white; border: 1px solid #e4e4e7; border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+    .hidden { display: none; }
+    .terminal { background: #09090b; color: #f4f4f5; border-radius: 14px; padding: 14px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; }
+    .toggle { width: 100%; text-align: left; border-radius: 10px; margin-bottom: 8px; }
+    .toggle.on { border-color: #18181b; background: #fafafa; }
+  </style>
+</head>
+<body>
+  <main>
+    <p>Architecture • Security • Engineering Culture</p>
+    <h1>Why We Stopped Using Auth Libraries</h1>
+
+    <div class="tabs">
+      <button class="active" data-tab="simulator">Simulator</button>
+      <button data-tab="debugger">Black Box Debugger</button>
+      <button data-tab="checklist">Checklist</button>
+    </div>
+
+    <section id="simulator" class="panel">
+      <div class="card">
+        <h2>Trust Score Simulator</h2>
+        <button class="toggle" data-flag="uniqueUserFields">Need unique user schema fields</button>
+        <button class="toggle on" data-flag="strictSecurityReq">Strict security requirements</button>
+        <button class="toggle on" data-flag="complianceAudit">Compliance + auditability needs</button>
+        <button class="toggle" data-flag="crossServiceIdentity">Cross-service identity coordination</button>
+        <button class="toggle" data-flag="offlineMode">Offline-first auth fallback</button>
+        <p id="trust-score"><strong>Trust score: 70/100</strong></p>
+      </div>
+    </section>
+
+    <section id="debugger" class="panel hidden">
+      <div class="subtabs">
+        <button class="active" data-debugger-mode="library">Library Mode</button>
+        <button data-debugger-mode="custom">Custom Mode</button>
+      </div>
+      <div class="terminal" id="terminal-log"></div>
+    </section>
+
+    <section id="checklist" class="panel hidden">
+      <div class="card">Can your team explain auth flow without vendor docs?</div>
+      <div class="card">Are schema changes blocked by provider constraints?</div>
+      <div class="card">Can you trace every failure in production logs?</div>
+      <div class="card">Do compliance requirements need first-party visibility?</div>
+    </section>
+  </main>
+
+  <script>
+    const state = {
+      activeTab: 'simulator',
+      debuggerMode: 'library',
+      simulator: {
+        uniqueUserFields: false,
+        strictSecurityReq: true,
+        complianceAudit: true,
+        crossServiceIdentity: false,
+        offlineMode: false
+      }
+    };
+
+    const logs = {
+      library: [
+        '[auth-lib] Initializing provider adapter...',
+        '[auth-lib] Mapping claims -> user schema (fixed)',
+        '[auth-lib] Error: token context missing in middleware',
+        '[auth-lib] Stack trace points to minified internal bundle'
+      ],
+      custom: [
+        '[custom-auth] Loading signed session payload...',
+        '[custom-auth] Validating route constraints + org scope',
+        '[custom-auth] User schema hydrated with custom fields',
+        '[custom-auth] Success: traceable auth path with full visibility'
+      ]
+    };
+
+    function computeTrustScore() {
+      let score = 48;
+      if (state.simulator.uniqueUserFields) score += 18;
+      if (state.simulator.strictSecurityReq) score += 12;
+      if (state.simulator.complianceAudit) score += 10;
+      if (state.simulator.crossServiceIdentity) score += 8;
+      if (state.simulator.offlineMode) score += 4;
+      return Math.min(100, score);
+    }
+
+    function render() {
+      document.querySelectorAll('[data-tab]').forEach((button) => {
+        const active = button.dataset.tab === state.activeTab;
+        button.classList.toggle('active', active);
+      });
+
+      document.querySelectorAll('.panel').forEach((panel) => {
+        panel.classList.toggle('hidden', panel.id !== state.activeTab);
+      });
+
+      document.querySelectorAll('.toggle').forEach((toggle) => {
+        const enabled = state.simulator[toggle.dataset.flag];
+        toggle.classList.toggle('on', enabled);
+      });
+
+      document.querySelectorAll('[data-debugger-mode]').forEach((button) => {
+        button.classList.toggle('active', button.dataset.debuggerMode === state.debuggerMode);
+      });
+
+      document.getElementById('trust-score').innerHTML = `<strong>Trust score: ${computeTrustScore()}/100</strong>`;
+      document.getElementById('terminal-log').innerHTML = logs[state.debuggerMode].map((line) => `<div>${line}</div>`).join('');
+    }
+
+    document.querySelectorAll('[data-tab]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.activeTab = button.dataset.tab;
+        render();
+      });
+    });
+
+    document.querySelectorAll('.toggle').forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const key = toggle.dataset.flag;
+        state.simulator[key] = !state.simulator[key];
+        render();
+      });
+    });
+
+    document.querySelectorAll('[data-debugger-mode]').forEach((button) => {
+      button.addEventListener('click', () => {
+        state.debuggerMode = button.dataset.debuggerMode;
+        render();
+      });
+    });
+
+    render();
+  </script>
+</body>
+</html>
