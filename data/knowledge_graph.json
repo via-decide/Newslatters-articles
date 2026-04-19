@@ -64,5 +64,14 @@
       "answering-vs-reasoning",
       "local-first-cloud"
     ]
+  },
+  {
+    "node": "auth-ownership-debate",
+    "related": [
+      "invisible-systems",
+      "local-first-not-about-rejecting-cloud",
+      "answering-vs-reasoning"
+    ],
+    "weight": 0.79
   }
 ]
