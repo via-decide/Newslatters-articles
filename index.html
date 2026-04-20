@@ -242,6 +242,17 @@
         .subscribe-btn:hover { background:#0b76e0; }
         .newsletter-label { border:1px solid rgba(10,102,194,0.5); color:#93c5fd; border-radius:999px; padding:3px 8px; font-size:0.75rem; }
         .footer-newsletter { margin: 20px auto 0; max-width: 520px; background: rgba(10,102,194,0.08); border:1px solid rgba(10,102,194,0.35); border-radius:12px; padding:18px; }
+        .article-link {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .article-link h3 { margin: 0 0 8px; color: var(--text-heading); }
+        .article-link p { margin: 0 0 12px; color: var(--text-muted); }
+        .article-link a { color: var(--accent-cyan); text-decoration: none; font-weight: 600; }
+        .article-link a:hover { color: #2dd4bf; }
 
         @media (max-width: 600px) {
             .container { padding: 40px 16px; }
@@ -280,6 +291,12 @@
     </section>
 
     <h3 class="section-title">Latest Articles</h3>
+
+    <div class="article-link">
+      <h3>daxini.xyz as a Progressive Web App</h3>
+      <p>Why Zayvora Needs an Offline-First Interface</p>
+      <a href="articles/daxini-pwa-offline-first.html">Read Interactive Article →</a>
+    </div>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;">
         <input id="article-search" type="search" placeholder="Search title, tags, description" style="flex:1;min-width:220px;background:#0f172a;border:1px solid var(--border-color);color:var(--text-primary);padding:12px 14px;border-radius:10px;">
