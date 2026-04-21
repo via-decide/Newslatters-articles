@@ -1,5 +1,55 @@
 [
   {
+    "title": "Zayvora vs Perplexity: Why They're Not Competitors",
+    "slug": "zayvora-vs-perplexity",
+    "date": "2026-04-21",
+    "author": "Dharam Daxini",
+    "tags": [
+      "Zayvora",
+      "Perplexity",
+      "Developer Tools",
+      "AI Infrastructure",
+      "Constitutional AI"
+    ],
+    "description": "Why AI search engines and AI development operating systems solve completely different problems.",
+    "summary": "An interactive breakdown of why Perplexity and Zayvora target different workflows, users, and markets.",
+    "concepts": [
+      "ai search",
+      "developer operating system",
+      "autonomous execution",
+      "data sovereignty",
+      "ai infrastructure"
+    ],
+    "content": "Zayvora vs Perplexity: Why They're Not Competitors — a practical comparison of search AI versus autonomous developer infrastructure.",
+    "newsletter": "zayvora-research",
+    "path": "/articles/zayvora-vs-perplexity.html",
+    "read_time": "6 min",
+    "category": "AI Infrastructure"
+  },
+  {
+    "title": "daxini.xyz as a Progressive Web App",
+    "slug": "daxini-pwa-offline-first",
+    "date": "2026-04-20",
+    "author": "Dharam Daxini",
+    "tags": [
+      "Zayvora",
+      "PWA",
+      "Offline-first",
+      "AI Infrastructure"
+    ],
+    "description": "Why Zayvora needs an offline-first interface and what a progressive web app unlocks for developers.",
+    "summary": "An interactive article on building daxini.xyz as an offline-first PWA for resilient AI workflows.",
+    "concepts": [
+      "pwa",
+      "offline-first",
+      "zayvora",
+      "browser architecture"
+    ],
+    "content": "daxini.xyz as a Progressive Web App — Why Zayvora Needs an Offline-First Interface.",
+    "newsletter": "zayvora-research",
+    "path": "/articles/daxini-pwa-offline-first.html"
+  },
+  {
     "title": "Why Most AI Builders Never Ship",
     "slug": "why-most-ai-builders-never-ship",
     "date": "2026-04-17",
@@ -253,6 +303,16 @@
     ],
     "component": "NewsletterGrowthGuide",
     "summary": "An interactive breakdown of 90-day analytics showing how to convert 4,992 impressions into a loyal subscriber base.",
-    "thumbnail": "/assets/analytics-90d.png"
+    "thumbnail": "/assets/analytics-90d.png",
+    "slug": "newsletter-growth-analysis",
+    "path": "/newsletter/daxini/index.html",
+    "date": "2026-04-19",
+    "description": "Interactive 90-day newsletter growth analysis dashboard.",
+    "content": "Decision Engine Lab: 90-Day Growth Analysis.",
+    "concepts": [
+      "analytics",
+      "growth",
+      "newsletter"
+    ]
   }
 ]

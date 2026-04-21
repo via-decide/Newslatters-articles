@@ -73,5 +73,29 @@
       "answering-vs-reasoning"
     ],
     "weight": 0.79
+  },
+  {
+    "node": "zayvora-vs-perplexity",
+    "related": [
+      "answering-vs-reasoning",
+      "invisible-systems",
+      "local-first-cloud"
+    ]
+  },
+  {
+    "node": "daxini-pwa-offline-first",
+    "related": [
+      "local-first-cloud",
+      "invisible-systems",
+      "zayvora-vs-perplexity"
+    ]
+  },
+  {
+    "node": "newsletter-growth-analysis",
+    "related": [
+      "why-most-ai-builders-never-ship",
+      "auth-ownership-debate",
+      "zayvora-vs-perplexity"
+    ]
   }
 ]
