@@ -1,5 +1,20 @@
 [
   {
+    "title": "Zayvora vs Perplexity: Why They're Not Competitors",
+    "url": "/articles/zayvora-vs-perplexity.html",
+    "tags": [
+      "Zayvora",
+      "Perplexity",
+      "Developer Tools",
+      "AI Infrastructure",
+      "Constitutional AI"
+    ],
+    "connections": [
+      "/articles/answering-vs-reasoning.html",
+      "/articles/invisible-systems.html"
+    ]
+  },
+  {
     "title": "Why Most AI Builders Never Ship",
     "url": "/why-most-ai-builders-never-ship/index.html",
     "tags": [

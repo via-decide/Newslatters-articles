@@ -5,8 +5,7 @@ const { execSync } = require('child_process');
 
 const repoRoot = path.resolve(__dirname, '..');
 const outputPath = path.join(repoRoot, 'data', 'articles.json');
-const requiredRoots = ['articles', 'newsletters', 'zayvora', 'blog'];
-const fallbackRoots = ['.'];
+const requiredRoots = ['articles', 'newsletter', 'newsletters', 'zayvora', 'blog'];
 const allowedExt = new Set(['.md', '.mdx', '.html']);
 const ignoredPaths = new Set([
   'index.html',
@@ -147,9 +146,7 @@ function normalizeTags(tagsValue, title, rel, content) {
 function discover() {
   const files = new Set();
   for (const root of requiredRoots) walk(path.join(repoRoot, root), files);
-  if (!files.size) {
-    for (const root of fallbackRoots) walk(path.join(repoRoot, root), files);
-  }
+  walk(repoRoot, files);
 
   const rows = [];
   for (const rel of [...files].sort()) {
