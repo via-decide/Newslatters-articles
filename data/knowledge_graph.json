@@ -117,6 +117,34 @@
       "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
+      "invisible-systems",
+      "local-first-not-about-rejecting-cloud",
+      "answering-vs-reasoning"
+    ],
+    "weight": 0.79
+  },
+  {
+    "node": "zayvora-vs-perplexity",
+    "related": [
+      "answering-vs-reasoning",
+      "invisible-systems",
+      "local-first-cloud"
+    ]
+  },
+  {
+    "node": "daxini-pwa-offline-first",
+    "related": [
+      "local-first-cloud",
+      "invisible-systems",
+      "zayvora-vs-perplexity"
+    ]
+  },
+  {
+    "node": "newsletter-growth-analysis",
+    "related": [
+      "why-most-ai-builders-never-ship",
+      "auth-ownership-debate",
+      "zayvora-vs-perplexity"
     ]
   }
 ]
