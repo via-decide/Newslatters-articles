@@ -260,6 +260,7 @@
             .subscribe-box { padding: 24px 16px; }
         }
     </style>
+    <link rel="stylesheet" href="./alchemist/alchemist-overlay.css">
 </head>
 <body>
 
@@ -334,6 +335,33 @@
 
 <script>
 (async function () {
+    let alchemistLoaded = false;
+
+    async function loadAlchemist() {
+        if (alchemistLoaded) return;
+        const files = [
+            "./alchemist/alchemist-swipe-ui.js",
+            "./alchemist/alchemist-actions.js",
+            "./alchemist/export-epub.js",
+            "./alchemist/export-pdf.js",
+            "./alchemist/zayvora-bridge.js",
+            "./alchemist/alchemist-panel.js"
+        ];
+        const start = performance.now();
+        for (const src of files) {
+            await new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = reject;
+                document.head.appendChild(script);
+            });
+        }
+        window.AlchemistPanel.init();
+        console.info("Alchemist UI render time", Math.round(performance.now() - start) + "ms");
+        alchemistLoaded = true;
+    }
+
     const articlesGrid = document.getElementById('articles-grid');
     const searchInput = document.getElementById('article-search');
     const emptyState = document.getElementById('empty-state');
@@ -433,6 +461,32 @@
     } catch (error) {
         console.error('Failed to load article index', error);
     }
+
+    setTimeout(() => {
+        const preloadButton = document.createElement("button");
+        preloadButton.type = "button";
+        preloadButton.className = "filter-btn";
+        preloadButton.textContent = "⚗ Open Alchemist";
+        preloadButton.style.marginBottom = "16px";
+        preloadButton.addEventListener("click", async () => {
+            await loadAlchemist();
+            window.AlchemistPanel.open();
+        });
+        const container = document.querySelector(".container");
+        container.insertBefore(preloadButton, container.firstElementChild.nextElementSibling);
+
+        let swipeStartY = 0;
+        document.addEventListener("touchstart", (event) => {
+            swipeStartY = event.touches[0].clientY;
+        }, { passive: true });
+        document.addEventListener("touchend", async (event) => {
+            const endY = event.changedTouches[0].clientY;
+            if (swipeStartY - endY > 60) {
+                await loadAlchemist();
+                window.AlchemistPanel.open();
+            }
+        }, { passive: true });
+    }, 0);
 
     renderNewsletterCards();
     filterButtons[0].classList.add('active');
