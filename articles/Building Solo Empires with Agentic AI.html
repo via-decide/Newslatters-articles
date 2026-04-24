@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zayvora - Local AI Journey</title>
+    
+    <!-- Tailwind CSS for layout utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- EXPLICIT CSS BLOCK -->
+    <style>
+        /* Custom CSS to handle specific styles, animations, and form inputs */
+        body {
+            background-color: #020617; /* slate-950 */
+            color: #e2e8f0; /* slate-200 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Background Glows */
+        .bg-glow-1 {
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 40vw;
+            height: 40vh;
+            border-radius: 50%;
+            background-color: rgba(16, 185, 129, 0.15); /* Emerald glow */
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            position: fixed;
+            top: 40%;
+            right: -10%;
+            width: 30vw;
+            height: 50vh;
+            border-radius: 50%;
+            background-color: rgba(59, 130, 246, 0.1); /* Blue glow */
+            filter: blur(100px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(51, 65, 85, 0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Custom Range Slider CSS */
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #10b981; /* Emerald 500 */
+            cursor: pointer;
+            margin-top: -8px;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+            transition: transform 0.1s;
+        }
+
+        input[type=range]::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #334155; /* Slate 700 */
+            border-radius: 4px;
+        }
+
+        /* Gradient Text Animation */
+        .text-gradient {
+            background: linear-gradient(to right, #34d399, #22d3ee); /* Emerald to Cyan */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Pulse Animation for Live Badge */
+        @keyframes custom-ping {
+            75%, 100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+        .animate-custom-ping {
+            animation: custom-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-emerald-500/30">
+
+    <!-- Background Elements -->
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- Hero Section -->
+    <header class="pt-20 pb-16 text-center max-w-4xl mx-auto px-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-sm font-medium mb-6">
+            <span class="relative flex h-2 w-2">
+                <span class="animate-custom-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Live in Production
+        </div>
+        
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+            I Stopped Paying For LLMs. <br/>
+            <span class="text-gradient">Built My Own For ₹4,000/Mo Savings.</span>
+        </h1>
+        
+        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+            How I moved 5 production products off OpenAI, reclaimed my margins, and achieved zero-cost inference using a $900 Mac Mini and Llama 3.1.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div class="bg-slate-900/80 border border-slate-700 rounded-lg p-1 flex items-center justify-between w-full sm:w-auto overflow-hidden">
+                <div class="flex items-center gap-3 px-4 py-3 bg-black/50 text-emerald-400 font-mono text-sm sm:text-base border-r border-slate-700">
+                    <i data-lucide="terminal" class="w-4 h-4"></i>
+                    <span id="command-text">ollama run daxini2404/zayvora</span>
+                </div>
+                <div class="px-2">
+                    <button id="copy-btn" class="flex items-center gap-2 px-3 py-2 bg-slate-700 hover:bg-slate-600 rounded-md transition-colors text-sm font-medium text-slate-200">
+                        <i data-lucide="copy" class="w-4 h-4" id="copy-icon"></i>
+                        <span id="copy-text">Copy</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ROI Calculator Section -->
+    <section class="py-12 max-w-4xl mx-auto px-4">
+        <div class="glass-card p-8 border-emerald-500/30">
+            <h2 class="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+                <i data-lucide="trending-down" class="text-emerald-400"></i>
+                Interactive Break-Even Calculator
+            </h2>
+            <p class="text-slate-400 mb-8">Adjust your current monthly OpenAI API bill to see how fast local hardware pays for itself.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-4">
+                        Your Monthly API Bill: <span id="bill-display" class="text-emerald-400 font-bold text-xl ml-2">₹4,000</span>
+                    </label>
+                    <input 
+                        type="range" 
+                        id="bill-slider"
+                        min="500" 
+                        max="20000" 
+                        step="500"
+                        value="4000" 
+                    />
+                    <div class="flex justify-between text-xs text-slate-500 mt-2">
+                        <span>₹500</span>
+                        <span>₹20,000+</span>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-slate-900/50 rounded-lg p-4 border border-slate-700/50 text-center">
+                        <div class="text-sm text-slate-400 mb-1">Time to ROI</div>
+                        <div class="text-3xl font-bold text-white">
+                            <span id="roi-months">18.7</span> <span class="text-lg text-slate-500">mo</span>
+                        </div>
+                    </div>
+                    <div class="bg-emerald-900/20 rounded-lg p-4 border border-emerald-500/30 text-center">
+                        <div class="text-sm text-emerald-400/80 mb-1">Year 1 Savings</div>
+                        <div class="text-3xl font-bold text-emerald-400">
+                            ₹<span id="yearly-savings">48,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Problem Section -->
+    <section class="py-12 max-w-3xl mx-auto px-4 text-lg text-slate-300 leading-relaxed">
+        <h2 class="flex items-center gap-2 text-2xl font-bold text-white mb-6">
+            <i data-lucide="alert-circle" class="text-rose-400"></i>
+            The Stupid Part (How This Even Happened)
+        </h2>
+        <p class="mb-6">
+            In March, I realized something stupid. I was paying ₹4,000/month to OpenAI for inference across five products. 
+            For an Indian founder running five products on bootstrap, that's real money leaving your account every month. 
+        </p>
+        
+        <div class="my-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="flex items-start gap-2 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                <span class="text-sm">daxini.space (spatial reasoning)</span>
+            </div>
+            <div class="flex items-start gap-2 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                <span class="text-sm">LogicHub (code generation)</span>
+            </div>
+            <div class="flex items-start gap-2 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                <span class="text-sm">SkillHex (interview simulation)</span>
+            </div>
+            <div class="flex items-start gap-2 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                <span class="text-sm">ViaDecide (decision logic)</span>
+            </div>
+            <div class="flex items-start gap-2 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50 sm:col-span-2">
+                <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-500 shrink-0 mt-0.5"></i>
+                <span class="text-sm">hanuman.solutions (automation workflows)</span>
+            </div>
+        </div>
+
+        <p>
+            100-150 API calls per day across all five. ₹4,000/month doesn't sound like much until you do the math: 
+            <strong class="text-white"> ₹4,000 × 12 months = ₹48,000/year.</strong>
+        </p>
+        <blockquote class="border-l-4 border-emerald-500 pl-4 italic text-slate-400 my-6 bg-slate-900/50 py-3 pr-3 rounded-r-lg">
+            "That's a flight to another city. That's a good laptop. That's three months of hosting. For what? For Claude to get smarter from my domain knowledge."
+        </blockquote>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="py-16 bg-slate-900/50 border-y border-slate-800 relative">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">The Architecture</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    All running on a $900 Mac Mini. No cloud bills. No per-token pricing. No vendor lock-in.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6 relative z-10">
+                <!-- Connector Line -->
+                <div class="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-700 -z-10 transform -translate-y-1/2"></div>
+                
+                <!-- Layer 1 -->
+                <div class="glass-card p-6 border-blue-500/30 transition-transform hover:-translate-y-2 duration-300">
+                    <div class="bg-slate-800 w-12 h-12 rounded-lg flex items-center justify-center mb-4 border border-slate-700 shadow-lg">
+                        <i data-lucide="cpu" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Zayvora Core</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Llama 3.1 8B + custom reasoning prompt. No training. No finetuning. Just smart prompting.</p>
+                </div>
+
+                <!-- Layer 2 -->
+                <div class="glass-card p-6 border-purple-500/30 transition-transform hover:-translate-y-2 duration-300">
+                    <div class="bg-slate-800 w-12 h-12 rounded-lg flex items-center justify-center mb-4 border border-slate-700 shadow-lg">
+                        <i data-lucide="database" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Nex (RAG)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Connects to docs, KB, customer data. Retrieves context before reasoning to prevent hallucinations.</p>
+                </div>
+
+                <!-- Layer 3 -->
+                <div class="glass-card p-6 border-orange-500/30 transition-transform hover:-translate-y-2 duration-300">
+                    <div class="bg-slate-800 w-12 h-12 rounded-lg flex items-center justify-center mb-4 border border-slate-700 shadow-lg">
+                        <i data-lucide="git-branch" class="w-6 h-6 text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Orchade</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Handles retries, multi-step logic, and error handling. The orchestrator that makes it reliable.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-16 max-w-3xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-white mb-12 text-center">The Build Timeline</h2>
+        <div class="space-y-6">
+            
+            <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]">1</div>
+                    <div class="w-0.5 h-full bg-slate-700 my-2"></div>
+                </div>
+                <div class="pb-8">
+                    <span class="text-emerald-500 font-mono text-sm font-semibold">Week 1</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-2">Benchmark & Test</h3>
+                    <p class="text-slate-400 leading-relaxed">Tested Llama 3.1 8B locally vs Claude. Hit 88% accuracy on customer support triage.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]">2</div>
+                    <div class="w-0.5 h-full bg-slate-700 my-2"></div>
+                </div>
+                <div class="pb-8">
+                    <span class="text-emerald-500 font-mono text-sm font-semibold">Week 2</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-2">Build Nex Layer</h3>
+                    <p class="text-slate-400 leading-relaxed">Developed the RAG layer to ground the model and prevent hallucinations.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]">3</div>
+                    <div class="w-0.5 h-full bg-slate-700 my-2"></div>
+                </div>
+                <div class="pb-8">
+                    <span class="text-emerald-500 font-mono text-sm font-semibold">Week 3</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-2">Build Orchade Layer</h3>
+                    <p class="text-slate-400 leading-relaxed">Engineered the orchestrator for multi-step reasoning and reliability.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 sm:gap-6">
+                <div class="flex flex-col items-center">
+                    <div class="w-10 h-10 rounded-full bg-slate-800 border-2 border-emerald-500 flex items-center justify-center font-bold text-emerald-400 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.2)]">4</div>
+                </div>
+                <div class="pb-8">
+                    <span class="text-emerald-500 font-mono text-sm font-semibold">Week 4</span>
+                    <h3 class="text-xl font-bold text-white mt-1 mb-2">Test & Ship</h3>
+                    <p class="text-slate-400 leading-relaxed">Optimized 2,300 lines of JS/Python. Launched on Ollama on April 5, 2024.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="py-16 max-w-4xl mx-auto px-4">
+        <div class="glass-card p-8">
+            <h2 class="text-2xl font-bold text-white mb-8 text-center">Open Source & Resources</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                
+                <a href="https://github.com/zayvora/zayvora-cookbook.git" target="_blank" class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 transition-colors border border-slate-700/50 group">
+                    <i data-lucide="github" class="w-8 h-8 text-slate-400 group-hover:text-white transition-colors shrink-0"></i>
+                    <div>
+                        <h3 class="text-white font-semibold mb-1 group-hover:text-emerald-400 transition-colors">Zayvora Cookbook</h3>
+                        <p class="text-sm text-slate-400">Implementation patterns and prompt strategies.</p>
+                    </div>
+                </a>
+
+                <a href="https://github.com/via-decide/Dharam-Daxini.git" target="_blank" class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-700/50 transition-colors border border-slate-700/50 group">
+                    <i data-lucide="github" class="w-8 h-8 text-slate-400 group-hover:text-white transition-colors shrink-0"></i>
+                    <div>
+                        <h3 class="text-white font-semibold mb-1 group-hover:text-emerald-400 transition-colors">Full Architecture</h3>
+                        <p class="text-sm text-slate-400">Everything I shipped for the 3-layer stack.</p>
+                    </div>
+                </a>
+
+                <div class="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 border border-slate-700/50 md:col-span-2">
+                    <i data-lucide="book-open" class="w-8 h-8 text-blue-400 shrink-0"></i>
+                    <div class="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h3 class="text-white font-semibold mb-1">The Daxini Stack</h3>
+                            <p class="text-sm text-slate-400">Technical deployment guide covering architecture, LoRA training, and Orchade orchestration. Available on Amazon KDP.</p>
+                        </div>
+                        <button class="shrink-0 text-sm font-semibold px-4 py-2 bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 rounded-md transition-colors border border-blue-500/20">
+                            View on Amazon
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center border-t border-slate-800 mt-8 bg-black/50">
+        <p class="text-slate-500 max-w-xl mx-auto px-4 italic">
+            "If you're paying ₹2,000-5,000/month for OpenAI, spend $900 once and eliminate that cost forever. That's it. Everything else is just execution."
+        </p>
+        <div class="mt-6 text-slate-400 font-medium">
+            — Dharam Daxini
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT BLOCK -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Copy to Clipboard Logic
+        const copyBtn = document.getElementById('copy-btn');
+        const copyText = document.getElementById('copy-text');
+        const copyIcon = document.getElementById('copy-icon');
+        const commandText = document.getElementById('command-text').innerText;
+
+        copyBtn.addEventListener('click', () => {
+            // Create a temporary textarea for better compatibility
+            const textArea = document.createElement("textarea");
+            textArea.value = commandText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                // Update UI to show success
+                copyText.innerText = "Copied!";
+                copyIcon.setAttribute('data-lucide', 'check-circle-2');
+                copyIcon.classList.remove('text-slate-200');
+                copyIcon.classList.add('text-emerald-400');
+                lucide.createIcons(); // Re-render the icon
+
+                // Reset after 2 seconds
+                setTimeout(() => {
+                    copyText.innerText = "Copy";
+                    copyIcon.setAttribute('data-lucide', 'copy');
+                    copyIcon.classList.remove('text-emerald-400');
+                    copyIcon.classList.add('text-slate-200');
+                    lucide.createIcons();
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy', err);
+            }
+            document.body.removeChild(textArea);
+        });
+
+        // 2. Interactive ROI Calculator Logic
+        const slider = document.getElementById('bill-slider');
+        const billDisplay = document.getElementById('bill-display');
+        const yearlySavingsDisplay = document.getElementById('yearly-savings');
+        const roiMonthsDisplay = document.getElementById('roi-months');
+
+        const HARDWARE_COST_USD = 900;
+        const EXCHANGE_RATE = 83; // Approx INR per USD
+        const HARDWARE_COST_INR = HARDWARE_COST_USD * EXCHANGE_RATE; // ₹74,700
+
+        function updateCalculator() {
+            const monthlyBill = parseInt(slider.value);
+            
+            // Format numbers nicely with commas
+            billDisplay.innerText = '₹' + monthlyBill.toLocaleString();
+            
+            const yearlySavings = monthlyBill * 12;
+            yearlySavingsDisplay.innerText = yearlySavings.toLocaleString();
+
+            const monthsToBreakEven = (HARDWARE_COST_INR / monthlyBill).toFixed(1);
+            roiMonthsDisplay.innerText = monthsToBreakEven;
+        }
+
+        // Add event listener to the slider
+        slider.addEventListener('input', updateCalculator);
+        
+        // Initial calculation on load
+        updateCalculator();
+    </script>
+</body>
+</html>
