@@ -1,73 +1,122 @@
 [
   {
-    "node": "invisible-systems",
+    "node": "zayvora-vs-perplexity-why-they-re-not-competitors",
     "related": [
-      "local-first-not-about-rejecting-cloud",
-      "answering-vs-reasoning",
-      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet"
+      "daxini-xyz-as-a-progressive-web-app",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "the-difference-between-answering-and-reasoning",
+      "i-built-my-own-ai-brain"
     ]
   },
   {
-    "node": "local-first-not-about-rejecting-cloud",
+    "node": "daxini-xyz-as-a-progressive-web-app",
+    "related": [
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "the-difference-between-answering-and-reasoning",
+      "i-built-my-own-ai-brain"
+    ]
+  },
+  {
+    "node": "why-we-stopped-using-auth-libraries",
     "related": [
       "invisible-systems",
+      "instructions",
+      "the-difference-between-answering-and-reasoning",
+      "local-first-is-not-about-rejecting-the-cloud",
+      "i-built-my-own-ai-brain"
+    ]
+  },
+  {
+    "node": "why-most-ai-builders-never-ship-dharam",
+    "related": [
+      "why-local-first-is-not-about-rejecting-the-cloud",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "local-first-is-not-about-rejecting-the-cloud",
+      "daxini-xyz-as-a-progressive-web-app"
+    ]
+  },
+  {
+    "node": "local-first-is-not-about-rejecting-the-cloud",
+    "related": [
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "invisible-systems",
+      "why-most-ai-builders-never-ship-dharam",
+      "instructions",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
     ]
   },
   {
-    "node": "answering-vs-reasoning",
+    "node": "instructions",
     "related": [
       "invisible-systems",
-      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
+      "local-first-is-not-about-rejecting-the-cloud",
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "why-we-stopped-using-auth-libraries",
+      "why-most-ai-builders-never-ship-dharam"
+    ]
+  },
+  {
+    "node": "why-local-first-is-not-about-rejecting-the-cloud",
+    "related": [
+      "local-first-is-not-about-rejecting-the-cloud",
+      "why-most-ai-builders-never-ship-dharam",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "local-first-not-about-rejecting-cloud"
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors"
+    ]
+  },
+  {
+    "node": "invisible-systems",
+    "related": [
+      "instructions",
+      "local-first-is-not-about-rejecting-the-cloud",
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "why-we-stopped-using-auth-libraries",
+      "why-most-ai-builders-never-ship-dharam"
+    ]
+  },
+  {
+    "node": "the-difference-between-answering-and-reasoning",
+    "related": [
+      "i-built-my-own-ai-brain",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "daxini-xyz-as-a-progressive-web-app",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet"
     ]
   },
   {
     "node": "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
     "related": [
-      "invisible-systems",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "i-built-my-own-ai-brain",
-      "local-first-not-about-rejecting-cloud"
+      "why-most-ai-builders-never-ship-dharam",
+      "i-built-my-own-ai-brain"
     ]
   },
   {
     "node": "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
     "related": [
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
-      "i-built-my-own-ai-brain",
-      "local-first-not-about-rejecting-cloud"
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "the-difference-between-answering-and-reasoning"
     ]
   },
   {
     "node": "i-built-my-own-ai-brain",
     "related": [
+      "the-difference-between-answering-and-reasoning",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
-      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "local-first-not-about-rejecting-cloud"
-    ]
-  },
-  {
-    "node": "local-first-cloud",
-    "related": [
-      "local-first-not-about-rejecting-cloud",
-      "invisible-systems",
-      "why-most-ai-builders-never-ship"
-    ]
-  },
-  {
-    "node": "why-most-ai-builders-never-ship",
-    "related": [
-      "invisible-systems",
-      "answering-vs-reasoning",
-      "local-first-cloud"
-    ]
-  },
-  {
-    "node": "auth-ownership-debate",
-    "related": [
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
       "invisible-systems",
       "local-first-not-about-rejecting-cloud",
       "answering-vs-reasoning"
