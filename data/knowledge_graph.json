@@ -1,101 +1,132 @@
 [
   {
-    "node": "invisible-systems",
+    "node": "local-first-infrastructure-is-not-a-feature-it-s-survival",
     "related": [
-      "local-first-not-about-rejecting-cloud",
-      "answering-vs-reasoning",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "zayvora-local-ai-journey",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet"
     ]
   },
   {
-    "node": "local-first-not-about-rejecting-cloud",
+    "node": "zayvora-local-ai-journey",
     "related": [
-      "invisible-systems",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival",
+      "why-local-first-is-not-about-rejecting-the-cloud"
+    ]
+  },
+  {
+    "node": "zayvora-vs-perplexity-why-they-re-not-competitors",
+    "related": [
+      "daxini-xyz-as-a-progressive-web-app",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
+      "zayvora-local-ai-journey",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
+    ]
+  },
+  {
+    "node": "daxini-xyz-as-a-progressive-web-app",
+    "related": [
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival",
+      "zayvora-local-ai-journey",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
     ]
   },
   {
-    "node": "answering-vs-reasoning",
+    "node": "why-we-stopped-using-auth-libraries",
     "related": [
       "invisible-systems",
+      "the-difference-between-answering-and-reasoning",
+      "local-first-is-not-about-rejecting-the-cloud",
+      "i-built-my-own-ai-brain",
+      "zayvora-vs-perplexity-why-they-re-not-competitors"
+    ]
+  },
+  {
+    "node": "why-most-ai-builders-never-ship-dharam",
+    "related": [
+      "why-local-first-is-not-about-rejecting-the-cloud",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "local-first-not-about-rejecting-cloud"
+      "local-first-is-not-about-rejecting-the-cloud",
+      "zayvora-local-ai-journey"
+    ]
+  },
+  {
+    "node": "local-first-is-not-about-rejecting-the-cloud",
+    "related": [
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "invisible-systems",
+      "why-most-ai-builders-never-ship-dharam",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "zayvora-local-ai-journey"
+    ]
+  },
+  {
+    "node": "why-local-first-is-not-about-rejecting-the-cloud",
+    "related": [
+      "local-first-is-not-about-rejecting-the-cloud",
+      "why-most-ai-builders-never-ship-dharam",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
+      "zayvora-local-ai-journey",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival"
+    ]
+  },
+  {
+    "node": "invisible-systems",
+    "related": [
+      "local-first-is-not-about-rejecting-the-cloud",
+      "why-local-first-is-not-about-rejecting-the-cloud",
+      "why-we-stopped-using-auth-libraries",
+      "why-most-ai-builders-never-ship-dharam",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
+    ]
+  },
+  {
+    "node": "the-difference-between-answering-and-reasoning",
+    "related": [
+      "i-built-my-own-ai-brain",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "daxini-xyz-as-a-progressive-web-app",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival",
+      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed"
     ]
   },
   {
     "node": "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
     "related": [
-      "invisible-systems",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "i-built-my-own-ai-brain",
-      "local-first-not-about-rejecting-cloud"
+      "why-most-ai-builders-never-ship-dharam",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival"
     ]
   },
   {
     "node": "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
     "related": [
+      "zayvora-local-ai-journey",
+      "daxini-xyz-as-a-progressive-web-app",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
       "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
-      "i-built-my-own-ai-brain",
-      "local-first-not-about-rejecting-cloud"
+      "why-local-first-is-not-about-rejecting-the-cloud"
     ]
   },
   {
     "node": "i-built-my-own-ai-brain",
     "related": [
-      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet",
-      "i-built-one-ai-model-then-i-split-it-into-three-here-s-what-changed",
-      "local-first-not-about-rejecting-cloud"
-    ]
-  },
-  {
-    "node": "local-first-cloud",
-    "related": [
-      "local-first-not-about-rejecting-cloud",
-      "invisible-systems",
-      "why-most-ai-builders-never-ship"
-    ]
-  },
-  {
-    "node": "why-most-ai-builders-never-ship",
-    "related": [
-      "invisible-systems",
-      "answering-vs-reasoning",
-      "local-first-cloud"
-    ]
-  },
-  {
-    "node": "auth-ownership-debate",
-    "related": [
-      "invisible-systems",
-      "local-first-not-about-rejecting-cloud",
-      "answering-vs-reasoning"
-    ],
-    "weight": 0.79
-  },
-  {
-    "node": "zayvora-vs-perplexity",
-    "related": [
-      "answering-vs-reasoning",
-      "invisible-systems",
-      "local-first-cloud"
-    ]
-  },
-  {
-    "node": "daxini-pwa-offline-first",
-    "related": [
-      "local-first-cloud",
-      "invisible-systems",
-      "zayvora-vs-perplexity"
-    ]
-  },
-  {
-    "node": "newsletter-growth-analysis",
-    "related": [
-      "why-most-ai-builders-never-ship",
-      "auth-ownership-debate",
-      "zayvora-vs-perplexity"
+      "the-difference-between-answering-and-reasoning",
+      "daxini-xyz-as-a-progressive-web-app",
+      "local-first-infrastructure-is-not-a-feature-it-s-survival",
+      "zayvora-vs-perplexity-why-they-re-not-competitors",
+      "i-spent-8-hours-building-the-ai-operating-system-india-doesn-t-know-it-needs-yet"
     ]
   }
 ]

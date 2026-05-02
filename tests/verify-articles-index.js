@@ -20,7 +20,7 @@ const ignored = new Set([
 function walk(dir, files) {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (['.git', 'data', 'scripts', 'tests'].includes(entry.name)) continue;
+    if (['.git', 'data', 'scripts', 'tests', 'node_modules', '.codex', 'docs'].includes(entry.name)) continue;
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       walk(fullPath, files);
