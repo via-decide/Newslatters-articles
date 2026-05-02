@@ -1,175 +1,198 @@
 [
   {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/scheduler/README.md"
+  },
+  {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/react/README.md"
+  },
+  {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/react-dom/README.md"
+  },
+  {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/lucide-react/README.md"
+  },
+  {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/loose-envify/README.md"
+  },
+  {
+    "title": "README",
+    "slug": "readme",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/js-tokens/README.md"
+  },
+  {
+    "title": "CHANGELOG",
+    "slug": "changelog",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/node_modules/js-tokens/CHANGELOG.md"
+  },
+  {
+    "title": "Local-First Infrastructure Is Not a Feature. It's Survival.",
+    "slug": "local-first-infrastructure-is-not-a-feature-it-s-survival",
+    "date": "2026-05-02",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/local-first-infrastructure.html"
+  },
+  {
+    "title": "Zayvora - Local AI Journey",
+    "slug": "zayvora-local-ai-journey",
+    "date": "2026-04-24",
+    "author": "Dharam Daxini",
+    "tags": [
+      "zayvora",
+      "AI"
+    ],
+    "description": "",
+    "path": "/articles/Building Solo Empires with Agentic AI.html"
+  },
+  {
+    "title": "Alchemist Integration",
+    "slug": "alchemist-integration",
+    "date": "2026-04-21",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/docs/alchemist-integration.md"
+  },
+  {
     "title": "Zayvora vs Perplexity: Why They're Not Competitors",
-    "slug": "zayvora-vs-perplexity",
+    "slug": "zayvora-vs-perplexity-why-they-re-not-competitors",
     "date": "2026-04-21",
     "author": "Dharam Daxini",
     "tags": [
-      "Zayvora",
-      "Perplexity",
-      "Developer Tools",
-      "AI Infrastructure",
-      "Constitutional AI"
+      "zayvora"
     ],
-    "description": "Why AI search engines and AI development operating systems solve completely different problems.",
-    "summary": "An interactive breakdown of why Perplexity and Zayvora target different workflows, users, and markets.",
-    "concepts": [
-      "ai search",
-      "developer operating system",
-      "autonomous execution",
-      "data sovereignty",
-      "ai infrastructure"
-    ],
-    "content": "Zayvora vs Perplexity: Why They're Not Competitors — a practical comparison of search AI versus autonomous developer infrastructure.",
-    "newsletter": "zayvora-research",
-    "path": "/articles/zayvora-vs-perplexity.html",
-    "read_time": "6 min",
-    "category": "AI Infrastructure"
+    "description": "",
+    "path": "/articles/zayvora-vs-perplexity.html"
+  },
+  {
+    "title": "Deployment Guard",
+    "slug": "deployment-guard",
+    "date": "2026-04-21",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/.codex/deployment-guard.md"
   },
   {
     "title": "daxini.xyz as a Progressive Web App",
-    "slug": "daxini-pwa-offline-first",
+    "slug": "daxini-xyz-as-a-progressive-web-app",
     "date": "2026-04-20",
     "author": "Dharam Daxini",
     "tags": [
-      "Zayvora",
-      "PWA",
-      "Offline-first",
-      "AI Infrastructure"
-    ],
-    "description": "Why Zayvora needs an offline-first interface and what a progressive web app unlocks for developers.",
-    "summary": "An interactive article on building daxini.xyz as an offline-first PWA for resilient AI workflows.",
-    "concepts": [
-      "pwa",
-      "offline-first",
       "zayvora",
-      "browser architecture"
+      "AI",
+      "The Daxini Stack"
     ],
-    "content": "daxini.xyz as a Progressive Web App — Why Zayvora Needs an Offline-First Interface.",
-    "newsletter": "zayvora-research",
+    "description": "Why daxini.xyz is evolving into a Progressive Web App and how offline-first architecture enables sovereign AI tools like Zayvora to run without cloud dependency.",
     "path": "/articles/daxini-pwa-offline-first.html"
   },
   {
-    "title": "Why Most AI Builders Never Ship",
-    "slug": "why-most-ai-builders-never-ship",
+    "title": "Why We Stopped Using Auth Libraries",
+    "slug": "why-we-stopped-using-auth-libraries",
+    "date": "2026-04-19",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/newsletter/auth-ownership/index.html"
+  },
+  {
+    "title": "Why Most AI Builders Never Ship — Dharam",
+    "slug": "why-most-ai-builders-never-ship-dharam",
     "date": "2026-04-17",
-    "author": "Dharam",
+    "author": "Dharam Daxini",
     "tags": [
-      "ViaDecide",
-      "AI",
-      "SoloFounder",
-      "BuildingInPublic"
+      "AI"
     ],
-    "description": "A founder log on why AI builders stall in discourse and how real product sense only comes from shipping.",
-    "summary": "A Day 2 founder reflection on shipping, judgment, and compounding execution over content consumption.",
-    "concepts": [
-      "shipping",
-      "founder judgment",
-      "building in public",
-      "opportunity cost",
-      "AI builders",
-      "Bharat-first"
-    ],
-    "content": "Why Most AI Builders Never Ship — A Day 2 solo founder log on noise, judgment, and building real systems from Kutch.",
-    "newsletter": "daxini-stack",
+    "description": "",
     "path": "/why-most-ai-builders-never-ship/index.html"
+  },
+  {
+    "title": "Local-First Is Not About Rejecting the Cloud",
+    "slug": "local-first-is-not-about-rejecting-the-cloud",
+    "date": "2026-04-17",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "An interactive engineering essay on local-first systems, cloud defaults, and infrastructure sovereignty.",
+    "path": "/articles/local-first-cloud.html"
+  },
+  {
+    "title": "Instructions",
+    "slug": "instructions",
+    "date": "2026-04-17",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "",
+    "path": "/.codex/instructions.md"
+  },
+  {
+    "title": "Why Local-First Is Not About Rejecting The Cloud",
+    "slug": "why-local-first-is-not-about-rejecting-the-cloud",
+    "date": "2026-04-16",
+    "author": "Dharam Daxini",
+    "tags": [],
+    "description": "An interactive long-form essay on local-first architecture, cloud infrastructure, and software sovereignty.",
+    "path": "/articles/local-first-not-about-rejecting-cloud.html"
   },
   {
     "title": "Invisible Systems",
     "slug": "invisible-systems",
     "date": "2026-04-16",
     "author": "Dharam Daxini",
-    "tags": [
-      "ViaDecide",
-      "Automation",
-      "Infrastructure",
-      "Research"
-    ],
-    "description": "An interactive essay on invisible systems, reliable automation, and why the best infrastructure disappears.",
-    "summary": "A builder reflection on designing boring, dependable systems that fade into the background and return mental bandwidth.",
-    "concepts": [
-      "invisible systems",
-      "automation",
-      "infrastructure",
-      "mental bandwidth",
-      "builder journey"
-    ],
-    "content": "Invisible Systems — Why the best infrastructure disappears from your attention and gives your thinking back.",
-    "newsletter": "daxini-stack",
+    "tags": [],
+    "description": "An interactive essay on invisible systems, quiet infrastructure, and the builder journey toward automation.",
     "path": "/articles/invisible-systems.html"
   },
   {
-    "title": "Why Local-First Is Not About Rejecting The Cloud",
-    "slug": "local-first-not-about-rejecting-cloud",
-    "date": "2026-04-16",
-    "author": "Dharam Daxini",
-    "tags": [
-      "ViaDecide",
-      "Local-first",
-      "Architecture",
-      "Research"
-    ],
-    "description": "A conversation about infrastructure, control, and why local-first is about optionality—not anti-cloud ideology.",
-    "summary": "Local-first is not a rejection of cloud infrastructure; it is a design question about ownership, constraints, and long-term control.",
-    "concepts": [
-      "local-first",
-      "cloud infrastructure",
-      "sovereignty",
-      "architecture",
-      "optional dependencies",
-      "offline-first"
-    ],
-    "content": "Why Local-First Is Not About Rejecting The Cloud — A conversation about infrastructure, control, and what happens when you build your own.",
-    "newsletter": "daxini-stack",
-    "path": "/articles/local-first-not-about-rejecting-cloud.html"
-  },
-  {
-    "title": "Local-First Is Not About Rejecting the Cloud",
-    "slug": "local-first-cloud",
-    "date": "2026-04-16",
-    "author": "Dharam Daxini",
-    "tags": [
-      "ViaDecide",
-      "Local-first",
-      "Architecture",
-      "Research"
-    ],
-    "description": "An interactive engineering essay on local-first systems, cloud defaults, and infrastructure sovereignty.",
-    "summary": "A practical essay on local-first design as infrastructure awareness, not anti-cloud ideology.",
-    "concepts": [
-      "local-first",
-      "cloud",
-      "infrastructure",
-      "sovereignty",
-      "distribution"
-    ],
-    "content": "Local-First Is Not About Rejecting the Cloud — It’s about understanding the infrastructure you stand on.",
-    "newsletter": "daxini-stack",
-    "path": "/articles/local-first-cloud.html"
-  },
-  {
     "title": "The Difference Between Answering and Reasoning",
-    "slug": "answering-vs-reasoning",
+    "slug": "the-difference-between-answering-and-reasoning",
     "date": "2026-04-15",
     "author": "Zayvora",
     "tags": [
-      "Zayvora",
-      "AI",
-      "Research",
-      "Founders"
-    ],
-    "description": "Why solo founders need reasoning systems instead of answer systems.",
-    "summary": "Why solo founders need thinking systems, not answer systems.",
-    "concepts": [
-      "reasoning",
-      "answer systems",
-      "thinking systems",
+      "AI reasoning",
       "founders",
       "decision making",
-      "zayvora"
+      "thinking systems"
     ],
-    "content": "The Difference Between Answering and Reasoning — Why Solo Founders Need Thinking Systems, Not Answer Systems.",
-    "newsletter": "zayvora-research",
+    "description": "Why solo founders need reasoning systems instead of answer systems.",
     "path": "/articles/answering-vs-reasoning.html"
   },
   {
@@ -180,28 +203,9 @@
     "tags": [
       "zayvora",
       "AI",
-      "Commerce",
-      "Knowledge systems",
       "The Daxini Stack"
     ],
     "description": "A sprint log from Gandhidham, Kutch on building Zayvora, Daxini.xyz, and SkillHex as sovereign AI infrastructure.",
-    "summary": "I Spent 8 Hours Building the AI Operating System India Doesn't Know It Needs Yet A Sprint Log from Kutch I Spent 8 Hours Building the AI Operating System India Doesn't Know It Needs Yet Time 6 AM Location Gandhidham, Kutch Battery 17% Status Building ↓ Scroll to read I'm writing this at 6 AM from Gandhidham, Kutch. Bat",
-    "concepts": [
-      "reasoning",
-      "what",
-      "because",
-      "model",
-      "building",
-      "zayvora",
-      "just",
-      "every",
-      "engineering",
-      "daxini",
-      "skillhex",
-      "hours"
-    ],
-    "content": "I Spent 8 Hours Building the AI Operating System India Doesn't Know It Needs Yet A Sprint Log from Kutch I Spent 8 Hours Building the AI Operating System India Doesn't Know It Needs Yet Time 6 AM Location Gandhidham, Kutch Battery 17% Status Building ↓ Scroll to read I'm writing this at 6 AM from Gandhidham, Kutch. Battery at 17%. Chai gone cold. Five browser tabs open, each one a different piece of an ecosystem I've been quietly assembling for months. Last night I didn't sleep much. I was building. And by the time the sun came up over Kutch, something had shifted — not just in the codebase, but in my head. I finally saw the full picture clearly enough to write it down. This is that article. It's not a product announcement. It's not a fundraising pitch. It's a sprint log — raw, honest, technically dense — from someone who believes India is about to leapfrog the global AI stack if the right people build the right foundations. And I want to show you exactly what that foundation looks like, layer by layer, because I've been living inside it for eight straight hours. Buckle up. This gets deep. Why I'm Building Something Nobody Asked For Two years ago, I got rate-limited at 2 AM in the middle of something that mattered. I was deep in a reasoning problem. My thought was unfinished. And a remote API — thousands of kilometers away — decided I had used enough tokens for the evening. Why am I renting my own intelligence? Every query I make goes overseas. Every API call trains someone else's model. Every token I spend is someone else's data point. If I'm rate-limited, I stop thinking. If the terms change, I have to pivot. If the service shuts down, I restart from nothing. Linus Torvalds built Linux from a dorm room in Finland because he didn't want to depend on someone else's Unix. Richard Stallman built the GNU project because he believed software freedom meant owning your tools, not renting them. Both of them started from the same place: tired of being told they had used enough. I started the same way. So I built an alternative. Not because I had funding. Not because I had a team. Because I had a Mac Mini, a fiber connection, and the kind of stubbornness that runs in families. Zayvora: The Reasoning Engine That Thinks Out Loud The centerpiece of everything is Zayvora — a custom fine-tuned Llama 3.1 8B model optimized specifically for engineering reasoning. Let me be precise about what that means, because \"AI model\" has become meaningless. Everyone has an AI model. What most people don't have is a reasoning architecture that shows its work. Zayvora runs a six-stage reasoning loop: DECOMPOSE → RETRIEVE → SYNTHESIZE CALCULATE → VERIFY → REVISE Every single query goes through all six stages. Every stage is inspectable. When Zayvora gives you an answer, you don't just get the answer — you get the entire chain of thought that produced it, broken into discrete, auditable steps. Why This Matters for Engineers ▼ Because engineering is not about answers. Engineering is about reasoning under uncertainty . The question isn't \"what is the answer?\" The question is \"how confident are we in this answer, and what would change it?\" A model that just gives you an answer is a calculator with a confident tone. A model that shows you DECOMPOSE → RETRIEVE → SYNTHESIZE → CALCULATE → VERIFY → REVISE is a colleague. Ollama Pulls (12h) 9 External Users 5 Marketing Budget ₹0 VC Funding None Nine pulls feels small. I know that. But I remember reading how the first person downloaded Linux outside of Linus Torvalds' university. Small numbers at the start of something real look exactly like this. The next phase includes a PR-based incremental training pipeline. Every architectural decision I make, every GitHub PR I merge, every security pattern I implement — gets extracted as a reasoning trace and folded back into the next LoRA adapter training run. The model learns from my actual engineering work, continuously, without me having to curate a dataset manually. That's a continuous training loop. That's how you build a model that genuinely gets smarter at the specific things you care about. Daxini.xyz and SkillHex: Infrastructure for Sovereign Reasoning A powerful model locked in a terminal is just a research toy. The reason I spent hours on daxini.xyz last night is that the interface is where power becomes accessible. And accessible power is the difference between a tool and a platform. The Four Main Modules ▼ → Zayvora Reasoning Console Live trace of six-stage reasoning loop executing in real time. Transparent AI, by design. → Knowledge Graph Research articles and engineering decisions as connected nodes, not flat lists. Spatial, relational organization. → GitHub Ecosystem Panel Live view of via-decide repositories. Real-time engineering work with commit histories and PR states. → Interactive Stack Layered visualization of Zayvora, Daxini, SkillHex, and ecosystem components. Architectural map, not marketing diagram. An Honest Admission Last night, the reasoning loop was getting stuck at \"Initializing.\" I know exactly why — the reasoning pipeline events aren't fully wired to the API integration yet. The fix is in my head, and it'll be in the codebase before this article finishes spreading. I'm telling you this because I think the culture of hiding unfinished work is one of the most destructive things in tech. Founders pretend products are perfect until they crumble publicly. I'd rather you watch me fix things in real time than discover the cracks later. SkillHex: The Talent Verification Layer If Zayvora is the thinking partner and Daxini is the environment where thinking becomes visible, then SkillHex is the institution that recognizes what you've actually proven. SkillHex is designed as a skill matrix and performance scoring system that produces an engineering reputation — a composite signal of your actual capabilities, derived from real evidence, not self-reported claims. Engineers use SkillHex free. No paisa from you. Ever. You track your own skill growth. You run simulators. You see your reasoning patterns. You understand your own performance. Recruiters pay for access to verified engineer profiles. That's where the model works: companies wanting signal instead of noise in their hiring pipelines, willing to pay for engineers who can prove what they can actually do. The reason this works is obvious: if you're good, you want your profile visible to companies willing to pay for real talent. If you're learning, you want to see yourself improve without someone else profiting from your data. The Reasoning Philosophy: Not Just Code Here's what I want you to understand about why this sprint matters beyond just the technical output. Most engineers I know are caught between two false choices: speed or quality. Move fast and break things, or move slow and be perfect. Iterate rapidly, or think deeply. The six-stage reasoning loop I'm building into Zayvora is not just a model architecture. It's a development methodology. Before I touch code, I decompose the problem. Before I design a solution, I retrieve relevant decisions from the past. Before I commit to an approach, I synthesize competing ideas. Before I ship, I calculate implications. I verify against constraints. I revise when I'm wrong. This is what engineering actually looks like when you're building something meant to last. Not vibes. Not hackathon energy. Not move-fast-and-break-things. Systematic, inspectable, revisable reasoning under constraint. You don't need permission to build this way. You don't need venture capital. You don't need a Bangalore address. You don't need to move to Silicon Valley. You need one thing: to stop accepting the premise that you have to choose between where you're from and what you're capable of building. I'm building from Gandhidham. My father built a career from Gandhidham in 1988 without asking anyone's permission. Different era. Different tools. Same city. Same instinct. What This Sprint Proves I want to end with something honest, because I think the startup content ecosystem is drowning in dishonest optimism. Eight hours of work produces architecture, not a product. The things I described above exist at different levels of completion — some are running, some are planned, some are partly built, some are still in my head. I'm being transparent about that. But here's what this sprint actually proves, and why I think it matters beyond just my ecosystem: A single developer with the right architecture can build more leverage than a team without one. The Daxini Stack took three months to get to this point. Four systems. Two books. One model on Ollama. One newsletter that attracted ISRO scientists and engineers from all over the country. Not because I'm special. But because I stopped accepting that I had to rent my intelligence. Nine pulls on Zayvora. That's how it starts. Next Steps Pull Zayvora on Ollama Read the Daxini Stack on KDP Join the Newsletter Explore GitHub Dharam Hindocha Solo founder | Gandhidham, Kutch, Gujarat, Bharat Building sovereign digital infrastructure. Zero VC. Zero compromise. daxini.xyz via-decide LinkedIn Twitter Zayvora on Ollama • Daxini Stack on Amazon KDP • SkillHex in development Built with vanilla HTML, CSS, and JavaScript. Zero dependencies. Zero compromises.",
-    "newsletter": "daxini-stack",
     "path": "/i-spent-8-hours-building-ai-operating-system-india-doesnt-know-it-needs-yet/index.html"
   },
   {
@@ -211,30 +215,55 @@
     "author": "Dharam Daxini",
     "tags": [
       "zayvora",
-      "ViaDecide",
-      "AI",
-      "Knowledge systems",
-      "The Daxini Stack"
+      "AI"
     ],
     "description": "Most people think bigger AI models are always better. They aren’t. Here is what happened when I stopped treating every problem the same way.",
-    "summary": "I built one AI model. Then I split it into three",
-    "concepts": [
-      "zayvora",
-      "what",
-      "model",
-      "three",
-      "daxini",
-      "dense",
-      "reasoning",
-      "ollama",
-      "need",
-      "axiom",
-      "built",
-      "same"
-    ],
-    "content": "I built one AI model. Then I split it into three. Here's what changed. Daxini Stack Architecture Journal I built one AI model. Then I split it into three. Here's what changed. Six weeks ago, I shipped Zayvora — a local reasoning engine for engineers who think in systems. One model. One purpose. One command: ollama run daxini2404/zayvora It worked. Founders used it. Solo builders used it. People reasoning through architecture decisions used it. But I kept seeing the same friction. The problem with one mode Zayvora's core is a 6-stage reasoning loop: Decompose → Retrieve → Synthesize → Calculate → Verify → Revise That loop is powerful for hard decisions. But not every question is a hard decision. Sometimes you just need to ship a PR. Sometimes you need to synthesize 40 research papers, not debate trade-offs. A reasoning engine that treats every question like a philosophy exam becomes noise. You start skipping the output because it's 800 words when you needed 80. I was over-engineering responses to under-complicated questions. What I changed I didn't retrain anything. I didn't add parameters. I didn't increase the model size by a single byte. I split the system prompt into three distinct operational modes — each one built for a different kind of thinking: Zayvora:Axiom — for decisions under uncertainty. When you need to reason slowly, not confidently. When the wrong answer is worse than no answer. Zayvora:Praxis — for builders who need to ship. WHAT → WHY → HOW → WATCH OUT. Four lines. Then you move. Zayvora:Nexar — for research and synthesis. SIGNAL → EVIDENCE → GAPS → VECTOR. Surface what's true, not what sounds true. The same question. Three different answers. I asked all three the same thing: \"Should I use BM25 or dense embeddings for my RAG system?\" Use the terminal below to switch between the models and see exactly how the operational framework limits the neural weights, delivering completely different tactical scopes. zayvora:axiom zayvora:praxis zayvora:nexar ~ daxini/stack ❯ ollama run zayvora: axiom >>> Should I use BM25 or dense embeddings for my RAG system? STATE: Analysis required to verify optimal retrieval layer for unclassified RAG index. DECOMPOSE: Decomposed into 5 sub-problems. Identified 3 missing structural assumptions regarding your latency caps, vector dimension budgets, and document chunk variance. REASON: BM25 is a lightweight ranking function strictly analyzing TF-IDF text density. Dense embeddings utilize vector semantics mapping high-dimensional spaces... FLAG: Without testing standard deviation on corpus vocabulary matching, relying purely on Dense vectors risks severe Out-Of-Vocabulary performance degradation. DELIVER: I recommend implementing a Reciprocal Rank Fusion (hybrid) approach rather than selecting a single binary point of failure. → WHAT: Start with BM25. → WHY: It requires zero GPU overhead, is significantly faster to debug, and sets a powerful baseline. → HOW: 1. Instantiate ElasticSearch or standard BM25 indexing over your chunks. 2. Run 50 query samples. 3. Identify exactly where keyword search fails semantically. 4. Inject Dense embeddings ONLY when you hit that failure mode. → WATCH OUT: Dense embeddings introduce high maintenance payload costs and index staleness. Don't build it until keyword-search explicitly fails you. SIGNAL: Hybrid retrieval frameworks currently demonstrate the highest quantitative precision floor for engineering RAG systems. EVIDENCE: - Literature confirms BM25 excels at exact keyword lookup (e.g. \"ERROR CODE 1045\"). - Dense architectures capture abstract conceptual similarity, but degrade sharply on hyper-specific serial numbers. GAPS: Existing research assumes static vocabulary. We do not have data on your specific update velocity. VECTOR: To finalize the mapping, what is the exact distribution of 'exact-match' vs 'conceptual' searches triggered by your user inputs? Three different tools. Same 6-stage reasoning core underneath. Why this matters for local-first AI Most people think model quality = parameter count. It doesn't. A 4.7GB model with the right operational frame outperforms a 70B model with the wrong one. Every time. The system prompt is the architecture. The model is the hardware. Zayvora:Praxis doesn't know more than Zayvora:Axiom. It just knows what kind of output you need, and it stops before it over-builds. That's the entire insight. What I spent to get here ₹0. No retraining. No fine-tuning. No GPU time. No cloud bill. I spent time — which is the only thing I have to spend as a solo builder — thinking clearly about what each mode of reasoning actually requires. Three Modelfiles. Three system prompts. One bash script to build them all. That's the whole engineering delta. How to run it ollama run zayvora:axiom # for decisions ollama run zayvora:praxis # for building ollama run zayvora:nexar # for research Or build all three locally in one command: chmod +x build_zayvora.sh ./build_zayvora.sh Everything runs on your machine. No API key. No cloud. No subscription. The rule I'm building by One model family. Purpose-built modes. Zero framework debt. Not every problem needs a new model. Most problems need a clearer frame. Zayvora:Axiom, Praxis, and Nexar are the same engine — running in the mode the problem actually requires. That's the Daxini Stack philosophy: local-first, sovereign, and built for solo builders who don't have time for tools that think for themselves. Dharam Daxini Solo founder, ViaDecide · Gandhidham, Kutch daxini.xyz · @daxini2404 Zayvora Engine · Daxini Stack v0.9.1 Try it: ollama pull daxini2404/zayvora",
-    "newsletter": "zayvora-research",
     "path": "/zayvora-split/index.html"
+  },
+  {
+    "title": "Research Engine",
+    "slug": "research-engine",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "Research"
+    ],
+    "description": "",
+    "path": "/research/index.html"
+  },
+  {
+    "title": "Dharam Daxini Profile",
+    "slug": "dharam-daxini-profile",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "The Daxini Stack"
+    ],
+    "description": "",
+    "path": "/profile/dharam-daxini/index.html"
+  },
+  {
+    "title": "Zayvora Research Newsletter",
+    "slug": "zayvora-research-newsletter",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "zayvora",
+      "Research"
+    ],
+    "description": "",
+    "path": "/newsletter/zayvora/index.html"
+  },
+  {
+    "title": "Daxini Stack Dispatches Newsletter",
+    "slug": "daxini-stack-dispatches-newsletter",
+    "date": "2026-04-13",
+    "author": "Dharam Daxini",
+    "tags": [
+      "The Daxini Stack"
+    ],
+    "description": "",
+    "path": "/newsletter/daxini/index.html"
   },
   {
     "title": "I Built My Own AI Brain",
@@ -242,77 +271,10 @@
     "date": "2026-04-13",
     "author": "Dharam Daxini",
     "tags": [
-      "zayvora",
       "AI",
-      "Knowledge systems"
+      "Research"
     ],
-    "description": "I Built My Own AI Brain ~12 min read Founder Story · AI Infrastructure · Solo Building I Got Tired of Forgetting Everything I Read. So I Built My Own AI Brain",
-    "summary": "I Built My Own AI Brain ~12 min read Founder Story · AI Infrastructure · Solo Building I Got Tired of Forgetting Everything I Read. So I Built My Own AI Brain",
-    "concepts": [
-      "what",
-      "built",
-      "building",
-      "knowledge",
-      "tools",
-      "build",
-      "books",
-      "infrastructure",
-      "personal",
-      "just",
-      "read",
-      "like"
-    ],
-    "content": "I Built My Own AI Brain ~12 min read Founder Story · AI Infrastructure · Solo Building I Got Tired of Forgetting Everything I Read. So I Built My Own AI Brain. One person. One Mac Mini. 12,000 books. And a growing conviction that the tools to think at scale shouldn't require a team. Solo Founder ◆ ~3,000 words ◆ Built in Public Scroll 🚨 NEW INTERACTIVE ARTICLE I built one AI model. Then I split it into three. Here's what changed. Read the architectural breakdown and test the terminal UI → 01 I Have a Problem. I read obsessively. Books on philosophy, systems thinking, cognitive science, history, technology. I take notes. I highlight. I dog-ear pages like it means something. And then, three months later — it's gone . Not all of it. But enough. Enough that I'll be mid-conversation and reach for an idea I know I read somewhere, and come up empty. Enough that the hours I spent with a book feel like they half-disappeared into the fog. 👋 Relatable? You finish a great book. You feel smarter. Two weeks later you can't remember the author's main argument. Every single time 😭 Rarely, I take great notes I don't read books lol The problem isn't discipline. I'm disciplined. I show up, I read, I annotate. The problem is that human memory isn't designed for the volume and density of information we now consume. Our brains are pattern machines, not archives. We were never meant to be the database. We were meant to do the thinking. But we've been forced to play both roles — storage and processor — and we're not very good at the first one. 90% of what we read is forgotten within a week without active review 12K+ books now in my personal AI corpus 1 Mac Mini running the whole thing That feeling — of knowledge slipping through your fingers, of reading feeling like an expensive hobby rather than a lasting investment — is what started everything you're about to read. ◆ 02 The Night I Decided to Build Something. It was late. Way too late. The kind of late where you should close the laptop and accept that tomorrow is a thing. I was trying to cross-reference an idea across four different books. I had the books. I had the notes. I had the rough memory that this was covered somewhere in one of them. Twenty minutes later, I was still hunting. Ctrl+F across four PDFs. Scanning handwritten notes in a notebook I hadn't opened in months. Rereading chapter summaries that somehow said everything except the thing I needed. I sat back and had a thought that changed everything: a researcher at a university doesn't work like this. Research institutions don't rely on the researcher's memory. They build systems. Infrastructure. Tools that make retrieval feel effortless, so the human can focus on the thinking — not the finding. And then the second thought, quieter but more electric: why don't I have that? Not because I couldn't access it. Not because it required a PhD or a department budget. But because no one had built it yet — for an individual, running on a personal machine, organized around a private library. The tools existed. The stack was available. Someone just had to actually put it together. That someone might as well be me. I didn't go to bed that night. I started reading about vector embeddings instead. ◆ 03 What I've Built (And Why It's Weirder Than It Sounds) Here's the thing about building your own AI ecosystem as a solo founder: nobody's roadmap looks like yours. There's no tutorial for \"build a personal research institution in your apartment.\" You're making strange decisions at midnight that somehow, over months, accumulate into architecture. Let me walk you through what actually exists now — not as a pitch, but as a genuine attempt to show you how these things compound. CORPUS The Foundation 12,000+ books processed, chunked, embedded, and stored in a vector database. The bedrock everything else sits on. NEX The Research Engine Semantic search across the corpus. Ask a real question, get real answers drawn from the library — not links, not snippets. ZAYVORA The Reasoning Layer An AI research engine trained on the private corpus. Not just retrieval — genuine reasoning with the material. STUDYOS The Learning OS A structured learning system for competitive exams and deep subject mastery. Where knowledge gets organized, not just found. It all starts with the books. I began processing my personal library — not digitizing it in the traditional sense, but ingesting it. Running books through a pipeline I built from scratch: extract the raw text, break it into meaningful semantic chunks, convert those chunks into high-dimensional vector embeddings, load everything into a database built for similarity search. Over time, that library grew to more than 12,000 books. Sitting on a Mac Mini. Quietly waiting to be asked something. ⚙️ What's actually happening technically When you ask a semantic search system a question, it converts your query into the same kind of numerical vector it used to store the text. Then it finds the chunks whose vectors are \"closest\" to your query vector. Closest in meaning, not in keywords. It's why you can ask \"what makes people irrational under stress\" and surface passages from a neuroscience book, a behavioural economics text, and a Stoic philosophy essay — even if none of them used your exact words. Nex is the layer that makes that corpus usable for research. You ask real questions, it surfaces real ideas. Not a list of results. Not a pile of links. Synthesized knowledge from a curated private library — the difference between Googling something and asking a well-read colleague who happens to have perfect recall. Zayvora goes a level deeper. If Nex is the retrieval layer, Zayvora is the reasoning layer. The one I actually talk to when I'm working through a hard problem. It doesn't just find relevant material — it thinks with it. Connects threads across disciplines. Pushes back. Offers angles I hadn't considered. StudyOS is the fourth piece — a more structured system, built specifically for situations where knowledge needs organization, not just retrieval. Competitive exam prep. Deep subject mastery. The kind of learning that benefits from curriculum architecture, not just a smart search bar. ◆ 04 The Stack (Hover Each Layer) Here's the actual architecture — from raw text to reasoning — visualised as simply as I can make it. Hover each layer to understand what it does. 📚 RAW BOOKS 12,000+ texts — PDFs, EPUBs, plain text files ↓ ✂️ TEXT EXTRACTION + CHUNKING Each book is extracted and broken into meaningful semantic passages ↓ 🔢 VECTOR EMBEDDINGS Each chunk becomes a high-dimensional numerical fingerprint of its meaning ↓ 🗄️ VECTOR DATABASE All embeddings stored for ultra-fast similarity search at query time ↓ 🔍 NEX — SEMANTIC RETRIEVAL Your question is embedded, matched to closest concepts, passages surfaced ↓ 🧠 ZAYVORA — REASONING AI layer that thinks with retrieved knowledge, not just returns it All of it runs locally. On a Mac Mini. Using open models and self-built tooling. No cloud subscriptions quietly draining money in the background. No third-party data dependencies. A private, sovereign knowledge system — mine, entirely, getting smarter the more I use it. ◆ 05 The Part Nobody Tells You About Building Alone People romanticize solo building. And parts of it genuinely are romantic — the freedom, the speed, the absence of meetings, the quiet pleasure of waking up and just building . But there's another part. The part where you're three hours into a problem with no clear solution and no one to ask. The part where you're not sure if you're building something meaningful or constructing an elaborate distraction that feels like work but might be procrastination wearing a technical disguise. The part where the silence of not having a co-founder to sanity-check you goes from peaceful to unnerving somewhere around month three. 🪞 Solo builder check-in 3am. Something is broken. You've been debugging for two hours. You still haven't found the issue. What do you do? Keep going. Sleep is optional. Sleep. Fresh eyes tomorrow. Ask the AI. Obviously. What kept me going was something deceptively simple: this was working for me. Not in a theoretical, \"I believe this will eventually pay off\" way. In a concrete, measurable, week-over-week way. My ability to research a topic went from an hour of scattered Googling to fifteen minutes of precise querying. My recall improved — not because my memory got better, but because I stopped relying on it. The system remembered. I could focus on thinking. That feedback loop — the feeling of genuinely thinking faster, of problems getting easier, of connections coming quicker — was more motivating than any external validation could have been. It created a kind of compounding confidence. Each improvement to the system made me better at my work, which motivated me to improve the system further. When you build tools for yourself, you are the most honest user you'll ever have. You can't fake usefulness when you're the one trying to use it. That's the underrated advantage of the indie builder: radical honesty. You don't have to convince a customer it's useful. You're the customer. You know immediately, viscerally, whether the thing you built actually works — or whether you've been fooling yourself. This system worked. I knew it because I could feel it. MONTH 1 The corpus pipeline Built the text extraction and chunking infrastructure. First 500 books ingested. System feels raw but functional. MONTH 3 Nex goes live First successful semantic query across 2,000 books. Retrieved a passage I'd forgotten I'd even read. The thing actually works. MONTH 5 12,000 books in corpus The scale changes the quality. Queries started surfacing unexpected connections across disciplines. This is when it gets interesting. ONGOING Zayvora + StudyOS Reasoning and learning layers built on top. The ecosystem starts to feel like a genuine research infrastructure. ◆ 06 The Shift That Most People Haven't Noticed Yet I want to say something that might sound dramatic, but I believe it more the longer I work in this space: We are in the middle of a genuinely historic shift in what one person can build — and most people are still treating it like a novelty. For most of history, the gap between an individual and an institution wasn't just a question of money or status. It was a question of infrastructure . Research teams had indexing systems. Libraries had catalogues built over decades. Organizations had processes — formal and informal — for capturing, storing, cross-referencing, and retrieving knowledge at scale. Individuals had notebooks and willpower. And we struggled. 💡 The shift in plain language Five years ago, what I'm building would have required a team of ML engineers, a six-figure cloud infrastructure budget, and probably a Series A to fund it. Today, a solo founder with enough curiosity, stubbornness, and a decent laptop can build the same stack in their spare room. The tools that used to live behind institutional walls are now sitting in open-source repositories, waiting to be assembled. Open-source models have matured at a pace that still surprises me. Embedding models are cheap, fast, and capable. Vector databases are well-documented and accessible. The knowledge to build sophisticated retrieval systems — the same kind that powers enterprise AI products — is freely available to anyone willing to learn it. This is not a small thing. We're watching the democratization of cognitive infrastructure happen in real time. The tools that multiply thinking are no longer locked behind institutional gates. The people who understand this — who sit down and actually build personal knowledge infrastructure instead of waiting for a polished SaaS product to do it for them — are going to operate at a level that looks almost unfair from the outside. Not because they have the most resources. Because they got there first and built exactly what they needed. Give a single person the power of a research team. That's not a marketing slogan. It's the actual goal. The tools exist. The gap is closing. The only question is who's paying attention. Solo builders who understand this moment are going to build some of the most interesting tools of the next decade. The best of them won't start with a business plan. They'll start with a problem they personally can't solve — and they'll refuse to accept that the solution requires a team. ◆ 07 Why I'm Building All of This In Public I almost didn't share any of this. It felt too unfinished. Too personal. Too difficult to explain without sounding like I was either bragging about a side project or deep in a delusion. Here's the honest truth about why things look polished when you read about them online: you only see the part after the person decided it was worth sharing. You don't see the six failed prototypes. The three weeks where nothing worked. The days where the pipeline broke for reasons that turned out to be embarrassingly simple. The moments where you genuinely wonder if you've wasted months on something no one will care about. 🧪 Experiment What's your honest reaction when someone says they're \"building in public\"? Respect. It takes guts. Marketing tactic, mostly. Depends what they're building. I do it myself. I kept seeing people describe the same frustration I started with — drowning in information, starving for insight. Reading constantly, retaining barely. Working hard to learn things, and feeling like the knowledge dissolved before it could compound. And I thought: someone should be talking about this differently. Not as a polished product launch. Not as a think-piece about the future of AI. As a live experiment, in progress, with the rough edges showing. There's a practical argument for building in public too. It creates accountability. It forces you to communicate clearly — and clarity of communication almost always produces clarity of thinking. When you have to explain what you built to someone who wasn't there for the decisions, you understand it better yourself. You find the holes. You spot the assumptions you'd stopped questioning. But there's a deeper reason, one I find harder to articulate without sounding self-important. We are in the early phase of something genuinely transformative, and the people shaping that phase shouldn't only be large companies working behind closed doors with carefully managed press releases. The experiments happening in apartments and home offices — on personal Mac Minis, with open models and self-built pipelines — matter. They're a form of R&D the ecosystem desperately needs, even if nobody's officially funding it. If one person reads this and gets the nudge to start building their own version of this — their own personal knowledge engine, their own reasoning infrastructure — then the time spent writing it was worth it. The idea compounds when it spreads. ◆ 08 What AI-Augmented Learning Actually Looks Like People talk about AI in education like it's either a threat (cheating, shortcuts, the death of real learning) or a gimmick (a chatbot that explains things you could have just Googled). Both framings miss something important. The real opportunity isn't to make learning easier in the sense of reducing effort. It's to make learning more effective — to close the gap between time invested and knowledge retained, between reading and understanding, between information consumed and insight generated. Imagine a student preparing for a high-stakes exam who can query a curated corpus of the world's best thinking on their subject — not just retrieve passages, but reason through the material with a system trained on the same corpus. Not an AI that writes the essay for them. An AI that helps them understand why the arguments matter, how they connect, where the tensions lie. Imagine a researcher who never loses a connection between ideas — because their entire knowledge base is semantically indexed, always searchable, always available. Not a replacement for their expertise. An amplifier of it. 🔭 The word that matters: amplification Automation replaces. Amplification extends. I'm not building tools that think for people. I'm building infrastructure that helps people think better — faster retrieval, deeper connections, less forgetting, more synthesis. The goal is always to make the human more capable, not more dependent. That's what I mean when I say the era of the augmented individual is beginning. Not the automated individual. Not the replaced individual. The augmented one — a person with institutional-grade tools, running on personal hardware, organized around their specific knowledge and goals. I don't know exactly what this ecosystem becomes. Maybe it stays personal — a set of tools that makes one person meaningfully smarter and faster, and that's genuinely enough. Maybe pieces of it become products other people use. Maybe the architecture becomes a template that others fork, adapt, and build on top of. I'm not trying to predict the outcome. I'm trying to stay curious and keep building. What I'm certain of is this: the tools are real. The moment is real. And the window to build in it — before it becomes crowded, before the obvious paths get saturated — is open right now, for anyone willing to take the problem seriously. ◆ The Only Thing Left Is to Actually Build. I started because I was frustrated about forgetting things I'd read. A small, personal problem that turned out to have a surprisingly deep solution. Somewhere along the way, it became something bigger. A conviction about what individuals can build now. A belief that personal knowledge infrastructure is going to matter enormously in the next decade. A genuine excitement about what this ecosystem becomes as the tools improve and the patterns get clearer. But mostly, it's still just the thing I needed. A system that remembers so I can think. Infrastructure that works so I can focus. A research team of one — the one that's been here all along, just finally properly equipped. The tools exist. The moment is here. The only thing left is to actually build. About the author Solo founder building Zayvora , Nex , StudyOS , and a 12,000-book AI corpus — locally, in public, one late night at a time. This is an experiment in what one person can build when the tools finally catch up to the ambition. Follow along for more on personal AI infrastructure, knowledge systems, and the future of how we learn and think.",
-    "newsletter": "daxini-stack",
+    "description": "",
     "path": "/my-own-ai-brain/index.html"
-  },
-  {
-    "id": "auth-ownership-debate",
-    "title": "Why We Stopped Using Auth Libraries",
-    "author": "Dharam Daxini",
-    "tags": [
-      "Architecture",
-      "Security",
-      "Engineering Culture"
-    ],
-    "component": "AuthOwnershipGuide",
-    "summary": "An exploration of why shifting from third-party auth libraries to custom implementations can increase transparency, trust, and schema flexibility.",
-    "sourceUrl": "https://www.linkedin.com/pulse/why-we-stopped-using-auth-libraries-what-learned-trust-dharam-daxini-2ko6f",
-    "slug": "auth-ownership-debate",
-    "date": "2026-04-19",
-    "description": "Interactive guide comparing auth libraries versus custom auth ownership and observability.",
-    "concepts": [
-      "authentication",
-      "security",
-      "architecture",
-      "custom auth",
-      "observability"
-    ],
-    "content": "Why We Stopped Using Auth Libraries — interactive simulator, debugger, and checklist for auth ownership decisions.",
-    "newsletter": "daxini-stack",
-    "path": "/newsletter/auth-ownership/index.html"
-  },
-  {
-    "id": "newsletter-growth-analysis",
-    "title": "Decision Engine Lab: 90-Day Growth Analysis",
-    "author": "Analytics Lab",
-    "tags": [
-      "Analytics",
-      "Strategy",
-      "Newsletter Growth"
-    ],
-    "component": "NewsletterGrowthGuide",
-    "summary": "An interactive breakdown of 90-day analytics showing how to convert 4,992 impressions into a loyal subscriber base.",
-    "thumbnail": "/assets/analytics-90d.png",
-    "slug": "newsletter-growth-analysis",
-    "path": "/newsletter/daxini/index.html",
-    "date": "2026-04-19",
-    "description": "Interactive 90-day newsletter growth analysis dashboard.",
-    "content": "Decision Engine Lab: 90-Day Growth Analysis.",
-    "concepts": [
-      "analytics",
-      "growth",
-      "newsletter"
-    ]
   }
 ]
