@@ -5,7 +5,7 @@ const { execSync } = require('child_process');
 
 const repoRoot = path.resolve(__dirname, '..');
 const outputPath = path.join(repoRoot, 'data', 'articles.json');
-const requiredRoots = ['articles', 'newsletters', 'zayvora', 'blog'];
+const requiredRoots = ['.'];
 const fallbackRoots = ['.'];
 const allowedExt = new Set(['.md', '.mdx', '.html']);
 const ignoredPaths = new Set([
@@ -22,7 +22,7 @@ const stopwords = new Set(['the','and','for','that','with','this','from','into',
 function walk(dir, collector) {
   if (!fs.existsSync(dir)) return;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
-    if (['.git', 'data', 'scripts', 'tests', 'node_modules'].includes(entry.name)) continue;
+    if (['.git', 'data', 'scripts', 'tests', 'node_modules', '.codex', 'docs'].includes(entry.name)) continue;
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       walk(fullPath, collector);
