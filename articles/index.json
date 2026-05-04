@@ -1,5 +1,20 @@
 [
   {
+    "title": "From Prompts to Pipelines: The Evolution of AI Systems",
+    "url": "/articles/from-prompts-to-pipelines.html",
+    "tags": [
+      "AI Architecture",
+      "Pipelines",
+      "Systems Thinking",
+      "Prompt Engineering",
+      "Alchemist"
+    ],
+    "connections": [
+      "/articles/invisible-systems.html",
+      "/articles/answering-vs-reasoning.html"
+    ]
+  },
+  {
     "title": "Zayvora vs Perplexity: Why They're Not Competitors",
     "url": "/articles/zayvora-vs-perplexity.html",
     "tags": [
