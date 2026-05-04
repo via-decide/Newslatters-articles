@@ -319,3 +319,40 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+.article-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  color: #eaeaea;
+  background: #0a0e1a;
+  font-family: system-ui, sans-serif;
+}
+
+.article-container h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.article-container h2 {
+  margin-top: 30px;
+  color: #ff671f;
+}
+
+.article-container p {
+  line-height: 1.7;
+  margin: 10px 0;
+}
+
+blockquote {
+  border-left: 3px solid #ff671f;
+  padding-left: 12px;
+  margin: 15px 0;
+  color: #c9a84c;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 25px 0;
+}
